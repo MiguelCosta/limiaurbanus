@@ -58,6 +58,15 @@ namespace LimiaUrbanus.WebSite.Migrations
                 new Tipologia { TipologiaId = 10, Nome = ">=T5", Ordem = 10 }
             );
 
+            context.ClassesEnergeticas.AddOrUpdate(
+                c => c.Nome,
+                new ClasseEnergetica { ClasseEnergeticaId = 1, Nome = "A", Ordem = 1 },
+                new ClasseEnergetica { ClasseEnergeticaId = 2, Nome = "B", Ordem = 2 },
+                new ClasseEnergetica { ClasseEnergeticaId = 3, Nome = "C", Ordem = 3 },
+                new ClasseEnergetica { ClasseEnergeticaId = 4, Nome = "D", Ordem = 4 },
+                new ClasseEnergetica { ClasseEnergeticaId = 5, Nome = "E", Ordem = 5 },
+                new ClasseEnergetica { ClasseEnergeticaId = 6, Nome = "F", Ordem = 6 }
+            );
 
         }
     }

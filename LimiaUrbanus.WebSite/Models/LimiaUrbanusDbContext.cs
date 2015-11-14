@@ -22,5 +22,7 @@ namespace LimiaUrbanus.WebSite.Models
         public DbSet<Objetivo> Objetivos { get; set; }
 
         public DbSet<Tipologia> Tipologias { get; set; }
+
+        public DbSet<ClasseEnergetica> ClassesEnergeticas { get; set; }
     }
 }
