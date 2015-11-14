@@ -172,6 +172,7 @@
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ObjetivosController.cs" />
     <Compile Include="Controllers\TiposController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,12 +181,17 @@
     <Compile Include="Migrations\201511071124358_InitialCreate.Designer.cs">
       <DependentUpon>201511071124358_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511142236560_AddObjetivo.cs" />
+    <Compile Include="Migrations\201511142236560_AddObjetivo.Designer.cs">
+      <DependentUpon>201511142236560_AddObjetivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LimiaUrbanusDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Objetivo.cs" />
     <Compile Include="Models\Tipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -266,6 +272,11 @@
     <Content Include="Views\Estados\Details.cshtml" />
     <Content Include="Views\Estados\Edit.cshtml" />
     <Content Include="Views\Estados\Index.cshtml" />
+    <Content Include="Views\Objetivos\Create.cshtml" />
+    <Content Include="Views\Objetivos\Delete.cshtml" />
+    <Content Include="Views\Objetivos\Details.cshtml" />
+    <Content Include="Views\Objetivos\Edit.cshtml" />
+    <Content Include="Views\Objetivos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,6 +288,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511071124358_InitialCreate.resx">
       <DependentUpon>201511071124358_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511142236560_AddObjetivo.resx">
+      <DependentUpon>201511142236560_AddObjetivo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

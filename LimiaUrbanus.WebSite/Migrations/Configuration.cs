@@ -2,12 +2,9 @@ using LimiaUrbanus.WebSite.Models;
 
 namespace LimiaUrbanus.WebSite.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<LimiaUrbanus.WebSite.Models.LimiaUrbanusDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<LimiaUrbanusDbContext>
     {
         public Configuration()
         {
@@ -15,26 +12,38 @@ namespace LimiaUrbanus.WebSite.Migrations
             ContextKey = "LimiaUrbanus.WebSite.Models.LimiaUrbanusDbContext";
         }
 
-        protected override void Seed(LimiaUrbanus.WebSite.Models.LimiaUrbanusDbContext context)
+        protected override void Seed(LimiaUrbanusDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
             context.Tipos.AddOrUpdate(
                 t => t.Nome,
                 new Tipo { TipoId = 1, Nome = "Andar Moradia" },
-                new Tipo { TipoId = 2, Nome = "Apartamento" }
+                new Tipo { TipoId = 2, Nome = "Apartamento" },
+                new Tipo { TipoId = 3, Nome = "Armazém" },
+                new Tipo { TipoId = 4, Nome = "Escritório" },
+                new Tipo { TipoId = 5, Nome = "Loja" },
+                new Tipo { TipoId = 6, Nome = "Moradia" },
+                new Tipo { TipoId = 7, Nome = "Prédio" },
+                new Tipo { TipoId = 8, Nome = "Quinta" },
+                new Tipo { TipoId = 9, Nome = "Quintinha" },
+                new Tipo { TipoId = 10, Nome = "Terreno" }
             );
 
+            context.Estados.AddOrUpdate(
+                e => e.Nome,
+                new Estado { EstadoId = 1, Nome = "Construção" },
+                new Estado { EstadoId = 2, Nome = "Novo" },
+                new Estado { EstadoId = 3, Nome = "Planta" },
+                new Estado { EstadoId = 4, Nome = "Usado" }
+            );
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Objetivos.AddOrUpdate(
+                o => o.Nome,
+                new Objetivo { ObjetivoId = 1, Nome = "Arrenda-se" },
+                new Objetivo { ObjetivoId = 2, Nome = "Time-Sharing" },
+                new Objetivo { ObjetivoId = 3, Nome = "Trespassa-se" },
+                new Objetivo { ObjetivoId = 4, Nome = "Vende-se" }
+            );
+
         }
     }
 }
