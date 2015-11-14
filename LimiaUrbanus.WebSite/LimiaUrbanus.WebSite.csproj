@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClassesEnergeticasController.cs" />
+    <Compile Include="Controllers\DistritosController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -195,9 +196,14 @@
     <Compile Include="Migrations\201511142311377_AddClasseEnergetica.Designer.cs">
       <DependentUpon>201511142311377_AddClasseEnergetica.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511142335205_AddDistrito.cs" />
+    <Compile Include="Migrations\201511142335205_AddDistrito.Designer.cs">
+      <DependentUpon>201511142335205_AddDistrito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClasseEnergetica.cs" />
+    <Compile Include="Models\Distrito.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LimiaUrbanusDbContext.cs" />
@@ -299,6 +305,11 @@
     <Content Include="Views\ClassesEnergeticas\Details.cshtml" />
     <Content Include="Views\ClassesEnergeticas\Edit.cshtml" />
     <Content Include="Views\ClassesEnergeticas\Index.cshtml" />
+    <Content Include="Views\Distritos\Create.cshtml" />
+    <Content Include="Views\Distritos\Delete.cshtml" />
+    <Content Include="Views\Distritos\Details.cshtml" />
+    <Content Include="Views\Distritos\Edit.cshtml" />
+    <Content Include="Views\Distritos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511142311377_AddClasseEnergetica.resx">
       <DependentUpon>201511142311377_AddClasseEnergetica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511142335205_AddDistrito.resx">
+      <DependentUpon>201511142335205_AddDistrito.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
