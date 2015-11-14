@@ -20,5 +20,7 @@ namespace LimiaUrbanus.WebSite.Models
         public DbSet<Estado> Estados { get; set; }
 
         public DbSet<Objetivo> Objetivos { get; set; }
+
+        public DbSet<Tipologia> Tipologias { get; set; }
     }
 }

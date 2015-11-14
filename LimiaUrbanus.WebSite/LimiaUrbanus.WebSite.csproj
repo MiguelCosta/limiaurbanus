@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
+    <Compile Include="Controllers\TipologiasController.cs" />
     <Compile Include="Controllers\TiposController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,6 +186,10 @@
     <Compile Include="Migrations\201511142236560_AddObjetivo.Designer.cs">
       <DependentUpon>201511142236560_AddObjetivo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511142254347_AddTipologia.cs" />
+    <Compile Include="Migrations\201511142254347_AddTipologia.Designer.cs">
+      <DependentUpon>201511142254347_AddTipologia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Estado.cs" />
@@ -193,6 +198,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objetivo.cs" />
     <Compile Include="Models\Tipo.cs" />
+    <Compile Include="Models\Tipologia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -277,6 +283,11 @@
     <Content Include="Views\Objetivos\Details.cshtml" />
     <Content Include="Views\Objetivos\Edit.cshtml" />
     <Content Include="Views\Objetivos\Index.cshtml" />
+    <Content Include="Views\Tipologias\Create.cshtml" />
+    <Content Include="Views\Tipologias\Delete.cshtml" />
+    <Content Include="Views\Tipologias\Details.cshtml" />
+    <Content Include="Views\Tipologias\Edit.cshtml" />
+    <Content Include="Views\Tipologias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -291,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511142236560_AddObjetivo.resx">
       <DependentUpon>201511142236560_AddObjetivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511142254347_AddTipologia.resx">
+      <DependentUpon>201511142254347_AddTipologia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

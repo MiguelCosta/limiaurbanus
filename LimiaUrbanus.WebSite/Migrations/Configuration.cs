@@ -44,6 +44,21 @@ namespace LimiaUrbanus.WebSite.Migrations
                 new Objetivo { ObjetivoId = 4, Nome = "Vende-se" }
             );
 
+            context.Tipologias.AddOrUpdate(
+                t => t.Nome,
+                new Tipologia { TipologiaId = 1, Nome = "T0", Ordem = 1 },
+                new Tipologia { TipologiaId = 2, Nome = "T1", Ordem = 2 },
+                new Tipologia { TipologiaId = 3, Nome = "T1+1", Ordem = 3 },
+                new Tipologia { TipologiaId = 4, Nome = "T2", Ordem = 4 },
+                new Tipologia { TipologiaId = 5, Nome = "T2+1", Ordem = 5 },
+                new Tipologia { TipologiaId = 6, Nome = "T3", Ordem = 6 },
+                new Tipologia { TipologiaId = 7, Nome = "T3+1", Ordem = 7 },
+                new Tipologia { TipologiaId = 8, Nome = "T4", Ordem = 8 },
+                new Tipologia { TipologiaId = 9, Nome = "T4+1", Ordem = 9 },
+                new Tipologia { TipologiaId = 10, Nome = ">=T5", Ordem = 10 }
+            );
+
+
         }
     }
 }
