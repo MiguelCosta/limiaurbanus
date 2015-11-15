@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ConcelhosController.cs" />
     <Compile Include="Controllers\DistritosController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
+    <Compile Include="Controllers\FreguesiasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
@@ -205,12 +206,17 @@
     <Compile Include="Migrations\201511151537539_AddConcelho.Designer.cs">
       <DependentUpon>201511151537539_AddConcelho.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511151552371_AddFreguesia.cs" />
+    <Compile Include="Migrations\201511151552371_AddFreguesia.Designer.cs">
+      <DependentUpon>201511151552371_AddFreguesia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClasseEnergetica.cs" />
     <Compile Include="Models\Concelho.cs" />
     <Compile Include="Models\Distrito.cs" />
     <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\Freguesia.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LimiaUrbanusDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -321,6 +327,11 @@
     <Content Include="Views\Concelhos\Details.cshtml" />
     <Content Include="Views\Concelhos\Edit.cshtml" />
     <Content Include="Views\Concelhos\Index.cshtml" />
+    <Content Include="Views\Freguesias\Create.cshtml" />
+    <Content Include="Views\Freguesias\Delete.cshtml" />
+    <Content Include="Views\Freguesias\Details.cshtml" />
+    <Content Include="Views\Freguesias\Edit.cshtml" />
+    <Content Include="Views\Freguesias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -347,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511151537539_AddConcelho.resx">
       <DependentUpon>201511151537539_AddConcelho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511151552371_AddFreguesia.resx">
+      <DependentUpon>201511151552371_AddFreguesia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LimiaUrbanus.WebSite.Models
 {
@@ -15,5 +11,7 @@ namespace LimiaUrbanus.WebSite.Models
         public int DistritoId { get; set; }
 
         public virtual Distrito Distrito { get; set; }
+
+        public virtual ICollection<Freguesia> Freguesias { get; set; }
     }
 }
