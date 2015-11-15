@@ -26,5 +26,7 @@ namespace LimiaUrbanus.WebSite.Models
         public DbSet<ClasseEnergetica> ClassesEnergeticas { get; set; }
 
         public DbSet<Distrito> Distritos { get; set; }
+
+        public DbSet<Concelho> Concelhos { get; set; }
     }
 }
