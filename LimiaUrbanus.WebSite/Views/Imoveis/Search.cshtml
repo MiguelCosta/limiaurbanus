@@ -15,7 +15,6 @@
                     @Html.LabelFor(model => model.Filter.ObjetivoId, "Objetivo", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-8">
                         @Html.EditorFor(model => model.Filter.ObjetivoId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.DropDownListFor(model => model.Filter.ObjetivoId, @Model.Filter.Objetivos)
                     </div>
                 </div>
 

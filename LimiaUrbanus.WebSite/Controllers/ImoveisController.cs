@@ -141,14 +141,13 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Search(ViewModels.ImovelSearch filter)
+        public ActionResult Search(ImovelSearch filter)
         {
-            var result = new ViewModels.ImoveSearchResult
+            var result = new ImoveSearchResult
             {
                 Filter = filter ?? new ImovelSearch()
             };
 
-            result.Filter.FillSource(db);
             result.Results = result.Filter.Query(db).ToList();
 
             return View(result);

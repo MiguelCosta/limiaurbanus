@@ -41,13 +41,6 @@ namespace LimiaUrbanus.WebSite.ViewModels
                                && ConcelhoId.HasValue == false
                                && FreguesiaId.HasValue == false;
 
-        public IEnumerable<Objetivo> Objetivos { get; private set; }
-
-        public void FillSource(LimiaUrbanusDbContext db)
-        {
-            Objetivos = db.Objetivos.OrderBy(o => o.Nome);
-        }
-
         public IEnumerable<Imovel> Query(LimiaUrbanusDbContext db)
         {
             if(IsEmpty)
