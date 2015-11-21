@@ -1,0 +1,107 @@
+﻿@model LimiaUrbanus.WebSite.ViewModels.ImoveSearchResult
+
+@{
+    ViewBag.Title = "Procurar";
+}
+
+@using(Html.BeginForm("Search", "Imoveis", FormMethod.Get))
+{
+    <div class="form-horizontal jumbotron">
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.ObjetivoId, "Objetivo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Filter.ObjetivoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.Filter.ObjetivoId, @Model.Filter.Objetivos)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.TipoId, "Tipo de imóvel", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Filter.TipoId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.EstadoId, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Filter.EstadoId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.TipologiaMin, "Tipologia", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Filter.TipologiaMin, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Filter.TipologiaMax, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.PrecoMin, "Preço", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Filter.PrecoMin, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Filter.PrecoMax, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.DistritoId, "Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Filter.DistritoId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.ConcelhoId, "Concelho", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Filter.ConcelhoId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Filter.FreguesiaId, "Freguesia", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Filter.FreguesiaId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12 text-center">
+                    <input type="submit" value="Encontrar o meu imóvel »" class="btn btn-success btn-lg" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<hr />
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+    </tr>
+
+    @foreach(var item in Model.Results)
+            {
+        <tr>
+            <td>@Html.DisplayFor(motelItem => item.Nome)</td>
+            <td>@Html.DisplayFor(modelItem => item.Preco)€</td>
+        </tr>
+    }
+</table>
+

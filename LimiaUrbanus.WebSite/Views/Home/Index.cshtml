@@ -5,7 +5,9 @@
 <div class="jumbotron">
     <h1>Limia Urbanus</h1>
     <p class="lead">Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo desde 2015.</p>
-    <p><a href="" class="btn btn-primary btn-lg">Procure o seu imóvel</a></p>
+    <p>
+        @Html.ActionLink("Procure o seu imóvel »", "Search", "Imoveis", null, new { @class = "btn btn-primary btn-lg" })
+    </p>
 </div>
 
 <div class="row">

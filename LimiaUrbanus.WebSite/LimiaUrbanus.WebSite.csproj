@@ -239,6 +239,8 @@
     <Compile Include="Models\Tipologia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ImovelSearch.cs" />
+    <Compile Include="ViewModels\ImoveSearchResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -351,6 +353,7 @@
     <Content Include="Views\Imoveis\Details.cshtml" />
     <Content Include="Views\Imoveis\Edit.cshtml" />
     <Content Include="Views\Imoveis\Index.cshtml" />
+    <Content Include="Views\Imoveis\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

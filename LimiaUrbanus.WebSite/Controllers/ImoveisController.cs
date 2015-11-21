@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LimiaUrbanus.WebSite.Models;
+using LimiaUrbanus.WebSite.ViewModels;
 
 namespace LimiaUrbanus.WebSite.Controllers
 {
@@ -24,12 +25,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Imoveis/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Imovel imovel = db.Imoveis.Find(id);
-            if (imovel == null)
+            if(imovel == null)
             {
                 return HttpNotFound();
             }
@@ -55,7 +56,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa")] Imovel imovel)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Imoveis.Add(imovel);
                 db.SaveChanges();
@@ -74,12 +75,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Imoveis/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Imovel imovel = db.Imoveis.Find(id);
-            if (imovel == null)
+            if(imovel == null)
             {
                 return HttpNotFound();
             }
@@ -99,7 +100,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa")] Imovel imovel)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Entry(imovel).State = EntityState.Modified;
                 db.SaveChanges();
@@ -117,12 +118,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Imoveis/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Imovel imovel = db.Imoveis.Find(id);
-            if (imovel == null)
+            if(imovel == null)
             {
                 return HttpNotFound();
             }
@@ -140,9 +141,22 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Search(ViewModels.ImovelSearch filter)
+        {
+            var result = new ViewModels.ImoveSearchResult
+            {
+                Filter = filter ?? new ImovelSearch()
+            };
+
+            result.Filter.FillSource(db);
+            result.Results = result.Filter.Query(db).ToList();
+
+            return View(result);
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if(disposing)
             {
                 db.Dispose();
             }
