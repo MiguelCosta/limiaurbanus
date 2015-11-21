@@ -1,0 +1,66 @@
+﻿@model LimiaUrbanus.WebSite.Models.Imovel
+
+@{
+    ViewBag.Title = $"{Model.Objetivo.Nome} {Model.Nome}";
+}
+
+<h2>@Model.Objetivo.Nome @Model.Nome (@Model.Preco €)</h2>
+<h6>@Model.Referencia</h6>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>Classe Energética</dt>
+        <dd>@Html.DisplayFor(model => model.ClasseEnergetica.Nome)</dd>
+
+        <dt>Estado</dt>
+        <dd>@Html.DisplayFor(model => model.Estado.Nome)</dd>
+
+        <dt>Distrito / Concelho / Freguesia</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Freguesia.Concelho.Distrito.Nome)
+            / @Html.DisplayFor(model => model.Freguesia.Concelho.Nome)
+            / @Html.DisplayFor(model => model.Freguesia.Nome)
+        </dd>
+
+        <dt>Tipo</dt>
+        <dd>@Html.DisplayFor(model => model.Tipo.Nome)</dd>
+
+        <dt>Tipologia</dt>
+        <dd>@Html.DisplayFor(model => model.Tipologia.Nome)</dd>
+
+        <dt>Morada</dt>
+        <dd>@Html.DisplayFor(model => model.Morada)</dd>
+
+        <dt>Coordenadas GPS</dt>
+        <dd>@Html.DisplayFor(model => model.CoordenadasGps)</dd>
+
+        <dt>Área (m2)</dt>
+        <dd>@Html.DisplayFor(model => model.Area)</dd>
+
+        <dt>Wc</dt>
+        <dd>@Html.DisplayFor(model => model.Wc)</dd>
+
+        <dt>Preço (€)</dt>
+        <dd>@Html.DisplayFor(model => model.Preco)</dd>
+
+        <dt>Contacto Responsável</dt>
+        <dd>@Html.DisplayFor(model => model.ContactoResponsavel)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.IsDestaque)</dt>
+        <dd>@Html.DisplayFor(model => model.IsDestaque)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.IsOportunidade)</dt>
+        <dd>@Html.DisplayFor(model => model.IsOportunidade)</dd>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.Descricao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ImovelId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

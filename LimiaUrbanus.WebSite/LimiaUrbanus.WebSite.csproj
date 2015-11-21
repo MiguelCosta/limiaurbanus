@@ -175,6 +175,7 @@
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\FreguesiasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImoveisController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ObjetivosController.cs" />
     <Compile Include="Controllers\TipologiasController.cs" />
@@ -210,6 +211,18 @@
     <Compile Include="Migrations\201511151552371_AddFreguesia.Designer.cs">
       <DependentUpon>201511151552371_AddFreguesia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511211209529_AddImovel.cs" />
+    <Compile Include="Migrations\201511211209529_AddImovel.Designer.cs">
+      <DependentUpon>201511211209529_AddImovel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511211220217_UpdateImovel.cs" />
+    <Compile Include="Migrations\201511211220217_UpdateImovel.Designer.cs">
+      <DependentUpon>201511211220217_UpdateImovel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511211415085_UpdateImovel1.cs" />
+    <Compile Include="Migrations\201511211415085_UpdateImovel1.Designer.cs">
+      <DependentUpon>201511211415085_UpdateImovel1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClasseEnergetica.cs" />
@@ -218,6 +231,7 @@
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\Freguesia.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Imovel.cs" />
     <Compile Include="Models\LimiaUrbanusDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Objetivo.cs" />
@@ -332,6 +346,11 @@
     <Content Include="Views\Freguesias\Details.cshtml" />
     <Content Include="Views\Freguesias\Edit.cshtml" />
     <Content Include="Views\Freguesias\Index.cshtml" />
+    <Content Include="Views\Imoveis\Create.cshtml" />
+    <Content Include="Views\Imoveis\Delete.cshtml" />
+    <Content Include="Views\Imoveis\Details.cshtml" />
+    <Content Include="Views\Imoveis\Edit.cshtml" />
+    <Content Include="Views\Imoveis\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -361,6 +380,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511151552371_AddFreguesia.resx">
       <DependentUpon>201511151552371_AddFreguesia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211209529_AddImovel.resx">
+      <DependentUpon>201511211209529_AddImovel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211220217_UpdateImovel.resx">
+      <DependentUpon>201511211220217_UpdateImovel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511211415085_UpdateImovel1.resx">
+      <DependentUpon>201511211415085_UpdateImovel1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
