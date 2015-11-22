@@ -23,12 +23,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Estados/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Estado estado = db.Estados.Find(id);
-            if (estado == null)
+            if(estado == null)
             {
                 return HttpNotFound();
             }
@@ -48,7 +48,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EstadoId,Nome")] Estado estado)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Estados.Add(estado);
                 db.SaveChanges();
@@ -61,12 +61,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Estados/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Estado estado = db.Estados.Find(id);
-            if (estado == null)
+            if(estado == null)
             {
                 return HttpNotFound();
             }
@@ -80,7 +80,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EstadoId,Nome")] Estado estado)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Entry(estado).State = EntityState.Modified;
                 db.SaveChanges();
@@ -92,12 +92,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Estados/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Estado estado = db.Estados.Find(id);
-            if (estado == null)
+            if(estado == null)
             {
                 return HttpNotFound();
             }
@@ -115,9 +115,16 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetEstados()
+        {
+            var ob =
+                db.Estados.OrderBy(x => x.Nome).Select(x => new { x.EstadoId, x.Nome }).ToList();
+            return Json(ob, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if(disposing)
             {
                 db.Dispose();
             }

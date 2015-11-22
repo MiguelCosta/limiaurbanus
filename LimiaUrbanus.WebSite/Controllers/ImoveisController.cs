@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LimiaUrbanus.WebSite.Models;
 using LimiaUrbanus.WebSite.ViewModels;
+using Microsoft.Owin.Security.Provider;
 
 namespace LimiaUrbanus.WebSite.Controllers
 {
@@ -151,6 +152,18 @@ namespace LimiaUrbanus.WebSite.Controllers
             result.Results = result.Filter.Query(db).ToList();
 
             return View(result);
+        }
+
+        public JsonResult GetImoveis()
+        {
+            var result = db.Imoveis.Select(x => new
+            {
+                ProductID = x.ImovelId,
+                ProductName = x.Nome,
+                UnitPrice = x.Preco
+            }).ToList();
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

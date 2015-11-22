@@ -115,6 +115,13 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetTipos()
+        {
+            var ob =
+                db.Tipos.OrderBy(t => t.Nome).Select(t => new { t.TipoId, t.Nome }).ToList();
+            return Json(ob, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if(disposing)

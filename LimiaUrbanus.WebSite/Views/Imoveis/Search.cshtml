@@ -14,41 +14,48 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.ObjetivoId, "Objetivo", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Filter.ObjetivoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.ObjetivoId, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Vender, Arrendar...</span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.TipoId, "Tipo de imóvel", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Filter.TipoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.TipoId, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Apartamento, Moradia, Terreno...</span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.EstadoId, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Filter.EstadoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.EstadoId, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Novo, Usado...</span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.TipologiaMin, "Tipologia", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.Filter.TipologiaMin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.TipologiaMin, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">T0, T1...</span>
                     </div>
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.Filter.TipologiaMax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.TipologiaMax, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">T4, T5...</span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Filter.PrecoMin, "Preço", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Filter.PrecoMin, "Preço (€)", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.Filter.PrecoMin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.PrecoMin, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Superior ou igual a...</span>
                     </div>
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.Filter.PrecoMax, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.PrecoMax, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Inferior ou igual a...</span>
                     </div>
                 </div>
 
@@ -58,21 +65,21 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.DistritoId, "Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Filter.DistritoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.DistritoId, new { htmlAttributes = new { style = "width: 100%" } })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.ConcelhoId, "Concelho", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Filter.ConcelhoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.ConcelhoId, new { htmlAttributes = new { style = "width: 100%" } })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Filter.FreguesiaId, "Freguesia", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Filter.FreguesiaId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Filter.FreguesiaId, new { htmlAttributes = new { style = "width: 100%" } })
                     </div>
                 </div>
             </div>
@@ -89,6 +96,111 @@
 
 <hr />
 
+<div id="listView"></div>
+<div id="pager" class="k-pager-wrap"></div>
+
+<script type="text/x-kendo-template" id="template">
+    <div class="product">
+        <a href="/Imoveis/Details/#:ProductID#">
+            <img src="/Files/default.png" alt="#: ProductName # image" />
+            <h3>#:ProductName#</h3>
+            <p>#:kendo.toString(UnitPrice, "c")#</p>
+        </a>
+    </div>
+</script>
+
+
+<script>
+    $(function () {
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "/Imoveis/GetImoveis",
+                    dataType: "json"
+                }
+            },
+            pageSize: 21
+        });
+
+        $("#pager").kendoPager({
+            dataSource: dataSource
+        });
+
+        $("#listView").kendoListView({
+            dataSource: dataSource,
+            template: kendo.template($("#template").html())
+        });
+    });
+</script>
+
+
+<style>
+  #listView {
+      padding: 10px 5px;
+      margin-bottom: -1px;
+      min-height: 510px;
+  }
+
+  .product {
+      float: left;
+      position: relative;
+      width: 151px;
+      height: 180px;
+      margin: 0 20px;
+      padding: 0;
+  }
+
+      .product img {
+          width: 150px;
+          height: 150px;
+      }
+
+      .product h3 {
+          margin: 0;
+          padding: 3px 5px 0 0;
+          max-width: 140px;
+          overflow: hidden;
+          line-height: 1.1em;
+          font-size: .9em;
+          font-weight: normal;
+          text-transform: uppercase;
+          color: #999;
+      }
+
+      .product p {
+          visibility: hidden;
+      }
+
+      .product:hover p {
+          visibility: visible;
+          position: absolute;
+          width: 150px;
+          height: 150px;
+          top: 0;
+          margin: 0;
+          padding: 0;
+          line-height: 150px;
+          vertical-align: middle;
+          text-align: center;
+          color: #fff;
+          background-color: rgba(0,0,0,0.75);
+          transition: background .2s linear, color .2s linear;
+          -moz-transition: background .2s linear, color .2s linear;
+          -webkit-transition: background .2s linear, color .2s linear;
+          -o-transition: background .2s linear, color .2s linear;
+      }
+
+  .k-listview:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+  }
+</style>
+
+
+
 <table class="table">
     <tr>
         <th>Nome</th>
@@ -96,7 +208,7 @@
     </tr>
 
     @foreach(var item in Model.Results)
-            {
+    {
         <tr>
             <td>@Html.DisplayFor(motelItem => item.Nome)</td>
             <td>@Html.DisplayFor(modelItem => item.Preco)€</td>
@@ -104,3 +216,138 @@
     }
 </table>
 
+<script>
+    $(document).ready(function () {
+        $("#Filter_ObjetivoId").kendoDropDownList({
+            dataTextField: "Nome",
+            dataValueField: "ObjetivoId",
+            optionLabel: "Não definido",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Objetivos/GetObjetivos"
+                    }
+                }
+            }
+        });
+
+        $("#Filter_TipoId").kendoDropDownList({
+            dataTextField: "Nome",
+            dataValueField: "TipoId",
+            optionLabel: "Não definido",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Tipos/GetTipos"
+                    }
+                }
+            }
+        });
+
+        $("#Filter_EstadoId").kendoDropDownList({
+            dataTextField: "Nome",
+            dataValueField: "EstadoId",
+            optionLabel: "Não definido",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Estados/GetEstados"
+                    }
+                }
+            }
+        });
+
+        $("#Filter_TipologiaMin").kendoDropDownList({
+            dataTextField: "Nome",
+            dataValueField: "TipologiaId",
+            optionLabel: "Não definido",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Tipologias/GetTipologias"
+                    }
+                }
+            }
+        });
+
+        $("#Filter_TipologiaMax").kendoDropDownList({
+            dataTextField: "Nome",
+            dataValueField: "TipologiaId",
+            optionLabel: "Não definido",
+            dataSource: {
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Tipologias/GetTipologias"
+                    }
+                }
+            }
+        });
+
+        var data = [0, 250, 500, 1000, 2000, 3000, 5000, 10000, 15000, 30000, 50000, 100000, 250000];
+        $("#Filter_PrecoMin").kendoComboBox({
+            dataSource: data
+        });
+
+        $("#Filter_PrecoMax").kendoComboBox({
+            dataSource: data
+        });
+
+        $("#Filter_DistritoId").kendoDropDownList({
+            dataTextField: "Nome",
+            dataValueField: "DistritoId",
+            optionLabel: "Não definido",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Distritos/GetDistritos"
+                    }
+                }
+            }
+        });
+
+        $("#Filter_ConcelhoId").kendoDropDownList({
+            autoBind: false,
+            cascadeFrom: "Filter_DistritoId",
+            dataTextField: "Nome",
+            dataValueField: "ConcelhoId",
+            optionLabel: "Não definido",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Concelhos/GetConcelhos",
+                        data: { distritoId: $("#Filter_DistritoId").data("kendoDropDownList").value() }
+                    }
+                }
+            }
+        });
+
+        $("#Filter_FreguesiaId").kendoDropDownList({
+            autoBind: false,
+            cascadeFrom: "Filter_ConcelhoId",
+            dataTextField: "Nome",
+            dataValueField: "FreguesiaId",
+            optionLabel: "Não definido",
+            dataSource: {
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/Freguesias/GetFreguesias",
+                        data: { concelhoId: $("#Filter_ConcelhoId").data("kendoDropDownList").value() }
+                    }
+                }
+            }
+        });
+
+    });
+
+</script>

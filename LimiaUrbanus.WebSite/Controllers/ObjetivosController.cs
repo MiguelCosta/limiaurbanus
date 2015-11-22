@@ -23,12 +23,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Objetivos/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Objetivo objetivo = db.Objetivos.Find(id);
-            if (objetivo == null)
+            if(objetivo == null)
             {
                 return HttpNotFound();
             }
@@ -48,7 +48,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ObjetivoId,Nome")] Objetivo objetivo)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Objetivos.Add(objetivo);
                 db.SaveChanges();
@@ -61,12 +61,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Objetivos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Objetivo objetivo = db.Objetivos.Find(id);
-            if (objetivo == null)
+            if(objetivo == null)
             {
                 return HttpNotFound();
             }
@@ -80,7 +80,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ObjetivoId,Nome")] Objetivo objetivo)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Entry(objetivo).State = EntityState.Modified;
                 db.SaveChanges();
@@ -92,12 +92,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: Objetivos/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Objetivo objetivo = db.Objetivos.Find(id);
-            if (objetivo == null)
+            if(objetivo == null)
             {
                 return HttpNotFound();
             }
@@ -115,9 +115,16 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetObjetivos()
+        {
+            var ob =
+                db.Objetivos.OrderBy(o => o.Nome).Select(o => new { o.ObjetivoId, o.Nome }).ToList();
+            return Json(ob, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if(disposing)
             {
                 db.Dispose();
             }

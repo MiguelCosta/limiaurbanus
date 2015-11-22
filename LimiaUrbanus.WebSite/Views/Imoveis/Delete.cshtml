@@ -140,16 +140,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsPesquisa)
+            @Html.DisplayNameFor(model => model.IsOportunidade)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsPesquisa)
+            @Html.DisplayFor(model => model.IsOportunidade)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using(Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
