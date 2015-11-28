@@ -324,7 +324,9 @@
                     read: {
                         dataType: "json",
                         url: "/Concelhos/GetConcelhos",
-                        data: { distritoId: $("#Filter_DistritoId").data("kendoDropDownList").value() }
+                        data: {
+                            distritoId: 1
+                        }
                     }
                 }
             }
@@ -340,9 +342,11 @@
                 serverFiltering: true,
                 transport: {
                     read: {
-                        dataType: "json",
+                        dataType: "jsonp",
                         url: "/Freguesias/GetFreguesias",
-                        data: { concelhoId: $("#Filter_ConcelhoId").data("kendoDropDownList").value() }
+                        data: {
+                            concelhoId: $("#Filter_ConcelhoId").data("kendoDropDownList").value()
+                        }
                     }
                 }
             }

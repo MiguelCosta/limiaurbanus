@@ -120,9 +120,9 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult GetConcelhos(int? distritoId)
+        public JsonResult GetConcelhos(string distritoId)
         {
-            var r = distritoId.HasValue ? db.Concelhos.Where(x => x.DistritoId == distritoId.Value) : db.Concelhos;
+            var r = string.IsNullOrWhiteSpace(distritoId) ? db.Concelhos : db.Concelhos.Where(x => x.DistritoId == int.Parse(distritoId));
 
             var result = r.OrderBy(x => x.Nome).Select(x => new { x.ConcelhoId, x.Nome }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
