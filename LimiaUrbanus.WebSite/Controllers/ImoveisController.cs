@@ -144,19 +144,13 @@ namespace LimiaUrbanus.WebSite.Controllers
 
         public ActionResult Search(ImovelSearch filter)
         {
-            var result = new ImoveSearchResult
-            {
-                Filter = filter ?? new ImovelSearch()
-            };
-
-            result.Results = result.Filter.Query(db).ToList();
-
-            return View(result);
+            return View(filter ?? new ImovelSearch());
         }
 
-        public JsonResult GetImoveis()
+        public JsonResult GetImoveis(ImovelSearch filter)
         {
-            var result = db.Imoveis.Select(x => new
+            filter = filter ?? new ImovelSearch();
+            var result = filter.Query(db).ToList().Select(x => new
             {
                 ProductID = x.ImovelId,
                 ProductName = x.Nome,
