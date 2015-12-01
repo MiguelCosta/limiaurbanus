@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ConcelhosController.cs" />
     <Compile Include="Controllers\DistritosController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
+    <Compile Include="Controllers\FilePathController.cs" />
     <Compile Include="Controllers\FreguesiasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImoveisController.cs" />
@@ -223,12 +224,18 @@
     <Compile Include="Migrations\201511211415085_UpdateImovel1.Designer.cs">
       <DependentUpon>201511211415085_UpdateImovel1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512010018399_AddFilePath.cs" />
+    <Compile Include="Migrations\201512010018399_AddFilePath.Designer.cs">
+      <DependentUpon>201512010018399_AddFilePath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClasseEnergetica.cs" />
     <Compile Include="Models\Concelho.cs" />
     <Compile Include="Models\Distrito.cs" />
     <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\FilePath.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\Freguesia.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Imovel.cs" />
@@ -240,7 +247,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ImovelSearch.cs" />
-    <Compile Include="ViewModels\ImoveSearchResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -1281,9 +1287,15 @@
     <Content Include="Scripts\kendo\2015.3.1111\kendo.angular2.min.js.map" />
     <Content Include="Scripts\kendo\2015.3.1111\kendo.angular.min.js.map" />
     <Content Include="Scripts\kendo\2015.3.1111\jquery.min.map" />
+    <Content Include="Views\FilePath\Create.cshtml" />
+    <Content Include="Views\FilePath\Delete.cshtml" />
+    <Content Include="Views\FilePath\Details.cshtml" />
+    <Content Include="Views\FilePath\Edit.cshtml" />
+    <Content Include="Views\FilePath\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1319,6 +1331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511211415085_UpdateImovel1.resx">
       <DependentUpon>201511211415085_UpdateImovel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512010018399_AddFilePath.resx">
+      <DependentUpon>201512010018399_AddFilePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

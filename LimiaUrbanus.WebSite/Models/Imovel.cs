@@ -61,5 +61,7 @@ namespace LimiaUrbanus.WebSite.Models
 
         public virtual Tipologia Tipologia { get; set; }
 
+        public virtual ICollection<FilePath> FilePaths { get; set; }
+
     }
 }

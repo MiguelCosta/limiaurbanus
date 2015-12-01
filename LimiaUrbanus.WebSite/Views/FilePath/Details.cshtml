@@ -1,0 +1,58 @@
+﻿@model LimiaUrbanus.WebSite.Models.FilePath
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FilePath</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Imovel.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imovel.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FileTye)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FileTye)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPrincipal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPrincipal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCapa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCapa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FilePathId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -55,10 +55,23 @@ namespace LimiaUrbanus.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa")] Imovel imovel)
+        public ActionResult Create([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa")] Imovel imovel, HttpPostedFileBase upload)
         {
             if(ModelState.IsValid)
             {
+                if(upload.ContentLength > 0)
+                {
+                    var foto = new FilePath
+                    {
+                        FileName = $"{Guid.NewGuid()}_{System.IO.Path.GetFileName(upload.FileName)}",
+                        FileTye = FileType.Img
+                    };
+                    var path = System.IO.Path.Combine(Server.MapPath("~/UploadFiles/"),
+                                        System.IO.Path.GetFileName(foto.FileName));
+                    upload.SaveAs(path);
+                    imovel.FilePaths = new List<FilePath> { foto };
+                }
+
                 db.Imoveis.Add(imovel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
