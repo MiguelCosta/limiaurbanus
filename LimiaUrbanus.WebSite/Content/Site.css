@@ -22,3 +22,23 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.user {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.profile {
+    background-image: url('../../Files/FotografiaTiagoCunha.jpg');
+}
+
+.jumbotron-cover {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("../../Files/PonteDeLima.jpg");
+    background-size: cover;
+    background-position: center, center;
+    color: white;
+}
