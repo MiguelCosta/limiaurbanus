@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
 using LimiaUrbanus.WebSite.Models;
+using LimiaUrbanus.WebSite.ViewModels;
 
 namespace LimiaUrbanus.WebSite.ViewModels
 {
@@ -43,32 +47,45 @@ namespace LimiaUrbanus.WebSite.ViewModels
 
         public IEnumerable<Imovel> Query(LimiaUrbanusDbContext db)
         {
-            if(IsEmpty)
+            try
             {
-                return db.Imoveis.Where(i => i.IsOportunidade);
-            }
-            var q = db.Imoveis.Where(i => i.IsAtivo);
 
-            if(ObjetivoId.HasValue) q = q.Where(i => i.ObjetivoId == ObjetivoId.Value);
-            if(TipoId.HasValue) q = q.Where(i => i.TipoId == TipoId.Value);
-            if(EstadoId.HasValue) q = q.Where(i => i.EstadoId == EstadoId.Value);
-            if(TipologiaMin.HasValue)
-            {
-                var t = db.Tipologias.Find(TipologiaMin.Value);
-                q = q.Where(i => i.Tipologia.Ordem >= t.Ordem);
-            }
-            if(TipologiaMax.HasValue)
-            {
-                var t = db.Tipologias.Find(TipologiaMax.Value);
-                q = q.Where(i => i.Tipologia.Ordem <= t.Ordem);
-            }
-            if(PrecoMin.HasValue) q = q.Where(i => i.Preco >= PrecoMin.Value);
-            if(PrecoMax.HasValue) q = q.Where(i => i.Preco <= PrecoMax.Value);
-            if(DistritoId.HasValue) q = q.Where(i => i.Freguesia.Concelho.DistritoId == DistritoId.Value);
-            if(ConcelhoId.HasValue) q = q.Where(i => i.Freguesia.ConcelhoId == ConcelhoId.Value);
-            if(FreguesiaId.HasValue) q = q.Where(i => i.FreguesiaId == FreguesiaId.Value);
 
-            return q;
+                var q = db.Imoveis
+                    .Include(i => i.FilePaths)
+                    .Where(i => i.IsAtivo);
+                if(IsEmpty)
+                {
+                    q = q.Where(i => i.IsOportunidade);
+                }
+                else
+                {
+                    if(ObjetivoId.HasValue) q = q.Where(i => i.ObjetivoId == ObjetivoId.Value);
+                    if(TipoId.HasValue) q = q.Where(i => i.TipoId == TipoId.Value);
+                    if(EstadoId.HasValue) q = q.Where(i => i.EstadoId == EstadoId.Value);
+                    if(TipologiaMin.HasValue)
+                    {
+                        var t = db.Tipologias.Find(TipologiaMin.Value);
+                        q = q.Where(i => i.Tipologia.Ordem >= t.Ordem);
+                    }
+                    if(TipologiaMax.HasValue)
+                    {
+                        var t = db.Tipologias.Find(TipologiaMax.Value);
+                        q = q.Where(i => i.Tipologia.Ordem <= t.Ordem);
+                    }
+                    if(PrecoMin.HasValue) q = q.Where(i => i.Preco >= PrecoMin.Value);
+                    if(PrecoMax.HasValue) q = q.Where(i => i.Preco <= PrecoMax.Value);
+                    if(DistritoId.HasValue) q = q.Where(i => i.Freguesia.Concelho.DistritoId == DistritoId.Value);
+                    if(ConcelhoId.HasValue) q = q.Where(i => i.Freguesia.ConcelhoId == ConcelhoId.Value);
+                    if(FreguesiaId.HasValue) q = q.Where(i => i.FreguesiaId == FreguesiaId.Value);
+                }
+                return q;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
     }
 }

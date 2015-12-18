@@ -10,6 +10,7 @@ using LimiaUrbanus.WebSite.Models;
 
 namespace LimiaUrbanus.WebSite.Controllers
 {
+    [Authorize]
     public class FilePathController : Controller
     {
         private LimiaUrbanusDbContext db = new LimiaUrbanusDbContext();
@@ -24,12 +25,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: FilePath/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             FilePath filePath = db.FilePath.Find(id);
-            if (filePath == null)
+            if(filePath == null)
             {
                 return HttpNotFound();
             }
@@ -37,10 +38,18 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: FilePath/Create
-        public ActionResult Create()
+        public ActionResult Create(int? imovelId)
         {
             ViewBag.ImovelId = new SelectList(db.Imoveis, "ImovelId", "Nome");
-            return View();
+            if(imovelId.HasValue)
+            {
+                var file = new FilePath { ImovelId = imovelId.Value };
+                return View(file);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: FilePath/Create
@@ -48,13 +57,22 @@ namespace LimiaUrbanus.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FilePathId,FileName,FileTye,ImovelId,IsPrincipal,IsCapa")] FilePath filePath)
+        public ActionResult Create([Bind(Include = "FilePathId,FileName,FileTye,ImovelId,IsPrincipal,IsCapa")] FilePath filePath, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
+                if(upload.ContentLength > 0)
+                {
+                    var fileName = $"{Guid.NewGuid()}_{System.IO.Path.GetFileName(upload.FileName)}";
+                    filePath.FileName = fileName;
+                    var path = System.IO.Path.Combine(Server.MapPath("~/UploadFiles/"),
+                                        System.IO.Path.GetFileName(fileName));
+                    upload.SaveAs(path);
+                }
+
                 db.FilePath.Add(filePath);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Imoveis", new { id = filePath.ImovelId });
             }
 
             ViewBag.ImovelId = new SelectList(db.Imoveis, "ImovelId", "Nome", filePath.ImovelId);
@@ -64,12 +82,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: FilePath/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             FilePath filePath = db.FilePath.Find(id);
-            if (filePath == null)
+            if(filePath == null)
             {
                 return HttpNotFound();
             }
@@ -84,7 +102,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FilePathId,FileName,FileTye,ImovelId,IsPrincipal,IsCapa")] FilePath filePath)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 db.Entry(filePath).State = EntityState.Modified;
                 db.SaveChanges();
@@ -97,12 +115,12 @@ namespace LimiaUrbanus.WebSite.Controllers
         // GET: FilePath/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             FilePath filePath = db.FilePath.Find(id);
-            if (filePath == null)
+            if(filePath == null)
             {
                 return HttpNotFound();
             }
@@ -122,7 +140,7 @@ namespace LimiaUrbanus.WebSite.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            if(disposing)
             {
                 db.Dispose();
             }

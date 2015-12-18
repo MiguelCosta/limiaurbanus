@@ -572,10 +572,17 @@
     <Content Include="Content\kendo\2015.3.1111\Uniform\sprite_2x.png" />
     <Content Include="Content\kendo\2015.3.1111\Uniform\sprite_kpi.png" />
     <Content Include="Content\kendo\2015.3.1111\Uniform\sprite_kpi_2x.png" />
+    <Content Include="Content\trix.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\a17.png" />
     <Content Include="Files\default.png" />
     <Content Include="Files\FotografiaTiagoCunha.jpg" />
     <Content Include="Files\FotografiaTiagoCunhaOriginal.jpg" />
+    <Content Include="Files\logotipo.jpg" />
+    <Content Include="Files\logotipo_small.jpg" />
+    <Content Include="Files\photo-does-not-exist.jpg" />
+    <Content Include="Files\PonteDeLima.jpg" />
+    <Content Include="Files\t01.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -605,7 +612,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\LimiaUrbanus - Web Deploy Azure.pubxml" />
     <None Include="Properties\PublishProfiles\LocalProduction.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalProductionDebug.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -617,6 +626,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jssor.slider.mini.js" />
     <Content Include="Scripts\kendo\2015.3.1111\angular.min.js" />
     <Content Include="Scripts\kendo\2015.3.1111\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Scripts\kendo\2015.3.1111\cultures\kendo.culture.af.min.js" />
@@ -1139,13 +1149,17 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\trix.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1295,6 +1309,9 @@
     <Content Include="Views\FilePath\Details.cshtml" />
     <Content Include="Views\FilePath\Edit.cshtml" />
     <Content Include="Views\FilePath\Index.cshtml" />
+    <Content Include="Views\Imoveis\_GoogleMaps.cshtml" />
+    <Content Include="Views\Imoveis\_Gallery.cshtml" />
+    <Content Include="Views\Home\Vender.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

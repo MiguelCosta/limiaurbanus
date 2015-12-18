@@ -42,3 +42,85 @@ textarea {
     background-position: center, center;
     color: white;
 }
+
+#listView {
+    padding: 10px 5px;
+    margin-bottom: -1px;
+    min-height: 510px;
+}
+
+.product {
+    float: left;
+    position: relative;
+    width: 241px;
+    height: 280px;
+    margin: 0 20px;
+    padding: 0;
+}
+
+    .product img {
+        width: 240px;
+        height: 240px;
+    }
+
+    .product h3 {
+        margin: 0;
+        padding: 3px 5px 0 0;
+        max-width: 240px;
+        overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        color: #999;
+    }
+
+    .product p {
+        visibility: hidden;
+    }
+
+    .product:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 240px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+        transition: background .2s linear, color .2s linear;
+    }
+
+.k-listview:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.imovelCover {
+    border-radius: 2%;
+    /*border: 10px solid black;*/
+    -moz-border-image: none;
+    -o-border-image: none;
+    -webkit-border-image: none;
+    border-image: none;
+    width: 100%;
+}
+
+.imovelDescricao {
+    /*background-color: rgba(153, 153, 153, 0.20);*/
+    padding: 15px;
+}
+
+.imovelLocalMap {
+    width: 100%;
+    height: 450px;
+}

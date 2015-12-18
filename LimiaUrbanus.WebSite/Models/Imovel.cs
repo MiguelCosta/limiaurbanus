@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace LimiaUrbanus.WebSite.Models
 {
@@ -16,6 +17,7 @@ namespace LimiaUrbanus.WebSite.Models
         public string Referencia { get; set; }
 
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Descricao { get; set; }
 
         public int TipoId { get; set; }

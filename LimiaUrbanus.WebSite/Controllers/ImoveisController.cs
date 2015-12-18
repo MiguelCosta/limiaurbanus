@@ -17,6 +17,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         private LimiaUrbanusDbContext db = new LimiaUrbanusDbContext();
 
         // GET: Imoveis
+        [Authorize]
         public ActionResult Index()
         {
             var imovels = db.Imoveis.Include(i => i.ClasseEnergetica).Include(i => i.Estado).Include(i => i.Freguesia).Include(i => i.Objetivo).Include(i => i.Tipo).Include(i => i.Tipologia);
@@ -39,6 +40,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: Imoveis/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.ClasseEnergeticaId = new SelectList(db.ClassesEnergeticas, "ClasseEnergeticaId", "Nome");
@@ -55,7 +57,8 @@ namespace LimiaUrbanus.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa")] Imovel imovel, HttpPostedFileBase upload)
+        [Authorize]
+        public ActionResult Create([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa,IsOportunidade")] Imovel imovel, HttpPostedFileBase upload)
         {
             if(ModelState.IsValid)
             {
@@ -87,6 +90,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: Imoveis/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if(id == null)
@@ -112,7 +116,8 @@ namespace LimiaUrbanus.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa")] Imovel imovel)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "ImovelId,Nome,Referencia,Descricao,TipoId,EstadoId,FreguesiaId,Morada,CoordenadasGps,ObjetivoId,ClasseEnergeticaId,Area,Wc,TipologiaId,Preco,ContactoResponsavel,IsDestaque,IsPesquisa,IsOportunidade")] Imovel imovel)
         {
             if(ModelState.IsValid)
             {
@@ -130,6 +135,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: Imoveis/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if(id == null)
@@ -147,6 +153,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         // POST: Imoveis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Imovel imovel = db.Imoveis.Find(id);
@@ -167,7 +174,8 @@ namespace LimiaUrbanus.WebSite.Controllers
             {
                 ProductID = x.ImovelId,
                 ProductName = x.Nome,
-                UnitPrice = x.Preco
+                UnitPrice = x.Preco,
+                Image = x.FilePaths.OrderByDescending(f => f.IsPrincipal).FirstOrDefault()?.FileName
             }).ToList();
 
             return Json(result, JsonRequestBehavior.AllowGet);

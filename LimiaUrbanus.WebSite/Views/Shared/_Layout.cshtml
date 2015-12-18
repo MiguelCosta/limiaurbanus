@@ -3,11 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Lima Urbanus</title>
+    <title>Lima Urbanus @(string.IsNullOrWhiteSpace(ViewBag.Title) ? string.Empty : $"- {ViewBag.Title}")</title>
 
     <link rel="stylesheet" href="~/Content/kendo/2015.3.1111/kendo.common.min.css" />
     <link rel="stylesheet" href="~/Content/kendo/2015.3.1111/kendo.metro.min.css" />
     <link rel="stylesheet" href="~/Content/kendo/2015.3.1111/kendo.mobile.all.min.css" />
+    <link rel="stylesheet" href="~/Content/trix.css" />
+
+    @Styles.Render("~/Content/css")
 
     @Scripts.Render("~/bundles/jquery")
 
@@ -19,9 +22,8 @@
         kendo.culture("pt-PT");
     </script>
 
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <script src="~/Scripts/trix.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,8 +38,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Comprar", "Comprar", "Home")</li>
+                    <li>@Html.ActionLink("Comprar", "Search", "Imoveis")</li>
                     <li>@Html.ActionLink("Vender", "Vender", "Home")</li>
                     <li>@Html.ActionLink("Acerca", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>

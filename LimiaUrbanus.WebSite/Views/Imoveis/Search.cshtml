@@ -6,92 +6,92 @@
 
 @using(Html.BeginForm("Search", "Imoveis", FormMethod.Get))
 {
-<div class="form-horizontal jumbotron">
-    <div class="row">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal jumbotron">
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="col-md-6">
-            <div class="form-group">
-                @Html.LabelFor(model => model.ObjetivoId, "Objetivo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-8">
-                    @Html.EditorFor(model => model.ObjetivoId, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">Vender, Arrendar...</span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ObjetivoId, "Objetivo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ObjetivoId, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Vender, Arrendar...</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TipoId, "Tipo de imóvel", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.TipoId, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Apartamento, Moradia, Terreno...</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EstadoId, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.EstadoId, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Novo, Usado...</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PrecoMin, "Preço (€)", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.PrecoMin, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Superior ou igual a...</span>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.PrecoMax, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">Inferior ou igual a...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TipologiaMin, "Tipologia", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.TipologiaMin, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">T0, T1...</span>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.TipologiaMax, new { htmlAttributes = new { style = "width: 100%" } })
+                        <span class="help-block">T4, T5...</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DistritoId, "Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DistritoId, new { htmlAttributes = new { style = "width: 100%" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConcelhoId, "Concelho", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConcelhoId, new { htmlAttributes = new { style = "width: 100%" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FreguesiaId, "Freguesia", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FreguesiaId, new { htmlAttributes = new { style = "width: 100%" } })
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.TipoId, "Tipo de imóvel", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-8">
-                    @Html.EditorFor(model => model.TipoId, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">Apartamento, Moradia, Terreno...</span>
+                <div class="col-md-12 text-center">
+                    @*<input type="submit" value="Encontrar o meu imóvel »" class="btn btn-success btn-lg" />*@
+                    <button type="submit" id="primaryTextButton" class="k-primary">Encontrar o meu imóvel »</button>
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.EstadoId, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-8">
-                    @Html.EditorFor(model => model.EstadoId, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">Novo, Usado...</span>
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.PrecoMin, "Preço (€)", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.PrecoMin, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">Superior ou igual a...</span>
-                </div>
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.PrecoMax, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">Inferior ou igual a...</span>
-                </div>
-            </div>
         </div>
-
-        <div class="col-md-6">
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.TipologiaMin, "Tipologia", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.TipologiaMin, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">T0, T1...</span>
-                </div>
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.TipologiaMax, new { htmlAttributes = new { style = "width: 100%" } })
-                    <span class="help-block">T4, T5...</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DistritoId, "Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DistritoId, new { htmlAttributes = new { style = "width: 100%" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ConcelhoId, "Concelho", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ConcelhoId, new { htmlAttributes = new { style = "width: 100%" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FreguesiaId, "Freguesia", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FreguesiaId, new { htmlAttributes = new { style = "width: 100%" } })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-12 text-center">
-                @*<input type="submit" value="Encontrar o meu imóvel »" class="btn btn-success btn-lg" />*@
-                <button type="submit" id="primaryTextButton" class="k-primary">Encontrar o meu imóvel »</button>
-            </div>
-        </div>
-
     </div>
-</div>
 }
 
 <hr />
@@ -102,7 +102,7 @@
 <script type="text/x-kendo-template" id="template">
     <div class="product">
         <a href="/Imoveis/Details/#:ProductID#">
-            <img src="/Files/default.png" alt="#: ProductName # image" />
+            <img src="/UploadFiles/#: Image #" alt="#: ProductName # image" />
             <h3>#:ProductName#</h3>
             <p>#:kendo.toString(UnitPrice, "c")#</p>
         </a>
@@ -300,7 +300,7 @@
                     url: "/Imoveis/GetImoveis"
                 }
             },
-            pageSize: 21
+            pageSize: 20
         });
 
         $("#pager").kendoPager({
@@ -314,68 +314,3 @@
     }
 
 </script>
-
-<style>
-  #listView {
-      padding: 10px 5px;
-      margin-bottom: -1px;
-      min-height: 510px;
-  }
-
-  .product {
-      float: left;
-      position: relative;
-      width: 151px;
-      height: 180px;
-      margin: 0 20px;
-      padding: 0;
-  }
-
-      .product img {
-          width: 150px;
-          height: 150px;
-      }
-
-      .product h3 {
-          margin: 0;
-          padding: 3px 5px 0 0;
-          max-width: 140px;
-          overflow: hidden;
-          line-height: 1.1em;
-          font-size: .9em;
-          font-weight: normal;
-          text-transform: uppercase;
-          color: #999;
-      }
-
-      .product p {
-          visibility: hidden;
-      }
-
-      .product:hover p {
-          visibility: visible;
-          position: absolute;
-          width: 150px;
-          height: 150px;
-          top: 0;
-          margin: 0;
-          padding: 0;
-          line-height: 150px;
-          vertical-align: middle;
-          text-align: center;
-          color: #fff;
-          background-color: rgba(0,0,0,0.75);
-          transition: background .2s linear, color .2s linear;
-          -moz-transition: background .2s linear, color .2s linear;
-          -webkit-transition: background .2s linear, color .2s linear;
-          -o-transition: background .2s linear, color .2s linear;
-      }
-
-  .k-listview:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden;
-  }
-</style>

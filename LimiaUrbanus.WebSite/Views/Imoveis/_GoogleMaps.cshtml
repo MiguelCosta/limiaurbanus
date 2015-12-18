@@ -1,0 +1,13 @@
+﻿@model LimiaUrbanus.WebSite.Models.Imovel
+
+<h2>Mapa</h2>
+@{
+    ///TODO: change to application config
+    var apiKey = "AIzaSyD44zm0rqAj3f7OrXlGYxBarTUpzSo6Jko";
+    var localSearch = Html.Encode($"{Model.Freguesia.Nome}, {Model.Freguesia.Concelho.Nome}");
+    var localUrlGoogleMaps = $"https://www.google.com/maps/embed/v1/search?key={apiKey}&q={localSearch}";
+}
+<iframe class="imovelLocalMap"
+        frameborder="0"
+        src="@localUrlGoogleMaps"
+        allowfullscreen />

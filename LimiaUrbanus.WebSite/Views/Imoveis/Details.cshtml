@@ -4,63 +4,104 @@
     ViewBag.Title = $"{Model.Objetivo.Nome} {Model.Nome}";
 }
 
-<h2>@Model.Objetivo.Nome @Model.Nome (@Model.Preco €)</h2>
+<h2>@Model.Objetivo.Nome @Model.Nome</h2>
 <h6>@Model.Referencia</h6>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
+<hr />
 
-        <dt>Classe Energética</dt>
-        <dd>@Html.DisplayFor(model => model.ClasseEnergetica.Nome)</dd>
+<div class="row">
+    <div class="col-md-6">
+        @{
+            var imgs = Model.FilePaths.OrderByDescending(f => f.IsCapa).ThenByDescending(f => f.IsPrincipal);
+            var imgCover = imgs.FirstOrDefault();
+        }
+        @if(imgCover != null)
+        {
+            <img src="/UploadFiles/@imgCover.FileName" class="imovelCover" />
+        }
+        else
+        {
+            <img src="~/Files/photo-does-not-exist.jpg" alt="image not found" />
+        }
+    </div>
+    <div class="col-md-6">
+        <p class="imovelDescricao">
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Descricao))
+        </p>
+        <hr />
+        <dl class="dl-horizontal">
+            @if(Model.Preco > 0)
+            {
+                <dt>Preço</dt>
+                <dd>@Model.Preco.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("pt-PT"))</dd>
+            }
 
-        <dt>Estado</dt>
-        <dd>@Html.DisplayFor(model => model.Estado.Nome)</dd>
+            <dt>Tipo</dt>
+            <dd>@Model.Tipo.Nome</dd>
 
-        <dt>Distrito / Concelho / Freguesia</dt>
-        <dd>
-            @Html.DisplayFor(model => model.Freguesia.Concelho.Distrito.Nome)
-            / @Html.DisplayFor(model => model.Freguesia.Concelho.Nome)
-            / @Html.DisplayFor(model => model.Freguesia.Nome)
-        </dd>
+            <dt>Estado</dt>
+            <dd>@Model.Estado.Nome</dd>
 
-        <dt>Tipo</dt>
-        <dd>@Html.DisplayFor(model => model.Tipo.Nome)</dd>
+            <dt>Local</dt>
+            <dd>
+                @Model.Freguesia.Concelho.Distrito.Nome / @Model.Freguesia.Concelho.Nome / @Model.Freguesia.Nome
+                @if(string.IsNullOrWhiteSpace(Model.Morada) == false)
+                {
+                    <br />
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.Morada))
+                }
+            </dd>
 
-        <dt>Tipologia</dt>
-        <dd>@Html.DisplayFor(model => model.Tipologia.Nome)</dd>
+            <dt>Área</dt>
+            <dd>@Model.Area m&#178;</dd>
 
-        <dt>Morada</dt>
-        <dd>@Html.DisplayFor(model => model.Morada)</dd>
+            @if(string.IsNullOrWhiteSpace(Model.Tipologia.Nome) == false)
+            {
+                <dt>Tipologia</dt>
+                <dd>@Model.Tipologia.Nome</dd>
+            }
 
-        <dt>Coordenadas GPS</dt>
-        <dd>@Html.DisplayFor(model => model.CoordenadasGps)</dd>
+            @if(Model.Wc.HasValue)
+            {
+                <dt>WC</dt>
+                <dd>@Model.Wc</dd>
+            }
 
-        <dt>Área (m2)</dt>
-        <dd>@Html.DisplayFor(model => model.Area)</dd>
+            @if(string.IsNullOrWhiteSpace(Model.ClasseEnergetica.Nome) == false)
+            {
+                <dt>Classe energética</dt>
+                <dd>@Model.ClasseEnergetica.Nome</dd>
+            }
 
-        <dt>Wc</dt>
-        <dd>@Html.DisplayFor(model => model.Wc)</dd>
+            @if(Request.IsAuthenticated)
+            {
+                <dt>Contacto responsável</dt>
+                <dd>@Model.ContactoResponsavel</dd>
 
-        <dt>Preço (€)</dt>
-        <dd>@Html.DisplayFor(model => model.Preco)</dd>
+                <dt>Coordenadas</dt>
+                <dd>@Model.CoordenadasGps</dd>
 
-        <dt>Contacto Responsável</dt>
-        <dd>@Html.DisplayFor(model => model.ContactoResponsavel)</dd>
+                <dt>Destaque</dt>
+                <dd>@Html.DisplayFor(model => model.IsDestaque)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.IsDestaque)</dt>
-        <dd>@Html.DisplayFor(model => model.IsDestaque)</dd>
-
-        <dt>@Html.DisplayNameFor(model => model.IsOportunidade)</dt>
-        <dd>@Html.DisplayFor(model => model.IsOportunidade)</dd>
-
-        <dd>
-            @Html.DisplayTextFor(model => model.Descricao)
-        </dd>
-
-    </dl>
+                <dt>Oportunidade</dt>
+                <dd>@Html.DisplayFor(model => model.IsOportunidade)</dd>
+            }
+        </dl>
+        @if(Request.IsAuthenticated)
+        {
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.ImovelId }) |
+                @Html.ActionLink("Lista de imóveis", "Index")
+            </p>
+        }
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ImovelId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<hr />
+
+@Html.Partial("_Gallery", Model)
+
+<hr />
+
+@Html.Partial("_GoogleMaps", Model)
