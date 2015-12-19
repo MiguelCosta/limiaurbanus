@@ -12,6 +12,11 @@
 
 <hr />
 
+<h2>Últimas novidades</h2>
+@Html.Partial("~/Views/Imoveis/_ImoveisList.cshtml")
+
+<hr />
+
 <div class="row">
     <div class="col-md-9">
         <h4>
@@ -69,7 +74,8 @@
             Encontre o imóvel que pretende comprar. Temos a melhor opções para si.
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Ver mais &raquo;</a>
+
+            <a class="btn btn-default" href="/Imoveis/Search">Ver mais &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -81,7 +87,7 @@
             Oferecemos avaliação gratuita e publicidade.
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Ver mais &raquo;</a>
+            <a class="btn btn-default" href="/Home/Vender">Ver mais &raquo;</a>
         </p>
     </div>
     <div class="col-md-4">
@@ -93,7 +99,33 @@
             Não hesite em entrar em contacto connosco.
         </p>
         <p>
-            <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Ver mais &raquo;</a>
+            <a class="btn btn-default" href="/Home/Contact">Ver mais &raquo;</a>
         </p>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        searchLastImoveis();
+    });
+
+    function searchLastImoveis(e) {
+        var filterImoveis = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "/Imoveis/GetLastImoveis"
+                }
+            },
+            pageSize: 8
+        });
+
+        $("#pager").kendoPager({
+            dataSource: filterImoveis
+        });
+
+        $("#listView").kendoListView({
+            dataSource: filterImoveis,
+            template: kendo.template($("#template").html())
+        });
+    }
+</script>

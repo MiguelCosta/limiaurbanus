@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LimiaUrbanus.WebSite.Models;
+using LimiaUrbanus.WebSite.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,9 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using LimiaUrbanus.WebSite.Models;
-using LimiaUrbanus.WebSite.ViewModels;
-using Microsoft.Owin.Security.Provider;
 
 namespace LimiaUrbanus.WebSite.Controllers
 {
@@ -53,7 +52,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // POST: Imoveis/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,7 +111,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // POST: Imoveis/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -170,15 +169,26 @@ namespace LimiaUrbanus.WebSite.Controllers
         public JsonResult GetImoveis(ImovelSearch filter)
         {
             filter = filter ?? new ImovelSearch();
-            var result = filter.Query(db).ToList().Select(x => new
-            {
-                ProductID = x.ImovelId,
-                ProductName = x.Nome,
-                UnitPrice = x.Preco,
-                Image = x.FilePaths.OrderByDescending(f => f.IsPrincipal).FirstOrDefault()?.FileName
-            }).ToList();
-
+            var result = filter.Query(db).ToList().Select(x => new ImovelView(x)).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetLastImoveis()
+        {
+            try
+            {
+                var result = db.Imoveis
+                .OrderByDescending(i => i.ImovelId)
+                .Take(24)
+                .ToList()
+                .Select(x => new ImovelView(x)).ToList();
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         protected override void Dispose(bool disposing)

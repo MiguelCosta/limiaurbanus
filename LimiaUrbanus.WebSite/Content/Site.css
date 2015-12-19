@@ -9,8 +9,8 @@
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -49,7 +49,7 @@ textarea {
     min-height: 510px;
 }
 
-.product {
+.imovel-thumbnail {
     float: left;
     position: relative;
     width: 241px;
@@ -58,12 +58,12 @@ textarea {
     padding: 0;
 }
 
-    .product img {
+    .imovel-thumbnail img {
         width: 240px;
         height: 240px;
     }
 
-    .product h3 {
+    .imovel-thumbnail h3 {
         margin: 0;
         padding: 3px 5px 0 0;
         max-width: 240px;
@@ -74,7 +74,31 @@ textarea {
         color: #999;
     }
 
-    .product p {
+    .imovel-thumbnail ul {
+        visibility: hidden;
+    }
+
+    .imovel-thumbnail:hover ul {
+        visibility: visible;
+        list-style-type: none;
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 30px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+        transition: background .2s linear, color .2s linear;
+    }
+
+/*.product p {
         visibility: hidden;
     }
 
@@ -95,7 +119,7 @@ textarea {
         -webkit-transition: background .2s linear, color .2s linear;
         -o-transition: background .2s linear, color .2s linear;
         transition: background .2s linear, color .2s linear;
-    }
+    }*/
 
 .k-listview:after {
     content: ".";

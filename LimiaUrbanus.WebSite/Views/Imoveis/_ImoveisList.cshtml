@@ -1,0 +1,25 @@
+﻿<div id="listView"></div>
+<div id="pager" class="k-pager-wrap"></div>
+
+<script type="text/x-kendo-template" id="template">
+    <div class="imovel-thumbnail">
+        <a href="/Imoveis/Details/#:ImovelId#">
+            # if (Imagem === null || Imagem === '') { #
+            <img src="/Files/photo-does-not-exist.jpg" alt="sem imagem" />
+            # } else { #
+            <img src="/UploadFiles/#: Imagem #" alt="#: Nome # image" />
+            # } #
+            <h3>#:Nome#</h3>
+            <ul>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>#:Objetivo#</li>
+                <li>#:Tipo#</li>
+                <li>#:Concelho# / #:Freguesia#</li>
+                <li>#:kendo.toString(Preco, "c")#</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+            </ul>
+        </a>
+    </div>
+</script>

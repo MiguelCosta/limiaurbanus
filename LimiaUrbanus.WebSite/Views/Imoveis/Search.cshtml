@@ -89,60 +89,18 @@
                     <button type="submit" id="primaryTextButton" class="k-primary">Encontrar o meu imóvel »</button>
                 </div>
             </div>
-
         </div>
     </div>
 }
 
 <hr />
 
-<div id="listView"></div>
-<div id="pager" class="k-pager-wrap"></div>
-
-<script type="text/x-kendo-template" id="template">
-    <div class="product">
-        <a href="/Imoveis/Details/#:ProductID#">
-            <img src="/UploadFiles/#: Image #" alt="#: ProductName # image" />
-            <h3>#:ProductName#</h3>
-            <p>#:kendo.toString(UnitPrice, "c")#</p>
-        </a>
-    </div>
-</script>
-
+@Html.Partial("_ImoveisList")
 
 <script>
-
-</script>
-
-
-<script>
-
-    //$(function () {
-    //    var dataSource = new kendo.data.DataSource({
-    //        transport: {
-    //            read: {
-    //                url: "/Imoveis/GetImoveis",
-    //                dataType: "json"
-    //            }
-    //        },
-    //        pageSize: 21
-    //    });
-
-    //    $("#pager").kendoPager({
-    //        dataSource: dataSource
-    //    });
-
-    //    $("#listView").kendoListView({
-    //        dataSource: dataSource,
-    //        template: kendo.template($("#template").html())
-    //    });
-    //});
-
     $(document).ready(function () {
 
-        $("#primaryTextButton").kendoButton({
-            //click: searchImoveis
-        });
+        $("#primaryTextButton").kendoButton();
 
         $("#ObjetivoId").kendoDropDownList({
             dataTextField: "Nome",
@@ -312,5 +270,4 @@
             template: kendo.template($("#template").html())
         });
     }
-
 </script>
