@@ -7,7 +7,8 @@
     var localSearch = Html.Encode($"{Model.Freguesia.Nome}, {Model.Freguesia.Concelho.Nome}");
     var localUrlGoogleMaps = $"https://www.google.com/maps/embed/v1/search?key={apiKey}&q={localSearch}";
 }
-<iframe class="imovelLocalMap"
-        frameborder="0"
-        src="@localUrlGoogleMaps"
-        allowfullscreen />
+<div id="mapcanvas">
+    <iframe class="imovelLocalMap" frameborder="0"
+            src="@localUrlGoogleMaps"
+            allowfullscreen />
+</div>

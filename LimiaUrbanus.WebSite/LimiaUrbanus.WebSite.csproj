@@ -1314,6 +1314,7 @@
     <Content Include="Views\Home\Vender.cshtml" />
     <Content Include="Views\Imoveis\_ImoveisList.cshtml" />
     <Content Include="Views\Imoveis\_GallerySwiper.cshtml" />
+    <Content Include="Views\Shared\_Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

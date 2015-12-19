@@ -4,7 +4,7 @@
     ViewBag.Title = $"{Model.Objetivo.Nome} {Model.Nome}";
 }
 
-<h2>@Model.Objetivo.Nome @Model.Nome</h2>
+<h1>@Model.Objetivo.Nome @Model.Nome</h1>
 <h6>@Model.Referencia</h6>
 
 <hr />
@@ -101,6 +101,12 @@
 <hr />
 
 @Html.Partial("_GallerySwiper", Model)
+
+<hr />
+
+<h2>Pedir mais informações</h2>
+
+@Html.Partial("_Contact", $"[{Model.Referencia}] {Model.Nome}")
 
 <hr />
 

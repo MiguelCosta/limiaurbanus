@@ -25,5 +25,14 @@ namespace LimiaUrbanus.WebSite.Controllers
 
         public ActionResult Vender() => View();
 
+        public ActionResult EnviarEmail(string email, string assunto, string mensagem)
+        {
+            System.Console.WriteLine(email);
+            System.Console.WriteLine(assunto);
+            System.Console.WriteLine(mensagem);
+            // todo redirecionar para uma página de sucesso e depois
+            // colocar o botão voltar para o URL onde se fez o pedido
+            return Redirect(Request.UrlReferrer.PathAndQuery);
+        }
     }
 }
