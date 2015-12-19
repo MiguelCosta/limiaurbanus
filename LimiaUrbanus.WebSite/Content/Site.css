@@ -148,3 +148,40 @@ textarea {
     width: 100%;
     height: 450px;
 }
+
+.swiper-container {
+    width: 100%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+.gallery-top {
+    height: 400px;
+    width: 100%;
+}
+
+.gallery-thumbs {
+    height: 20%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+    .gallery-thumbs .swiper-slide {
+        width: 100px;
+        height: 100px;
+        opacity: 0.4;
+    }
+
+    .gallery-thumbs .swiper-slide-active {
+        opacity: 1;
+    }
