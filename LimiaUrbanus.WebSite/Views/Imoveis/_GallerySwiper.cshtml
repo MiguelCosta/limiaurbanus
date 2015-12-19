@@ -1,7 +1,5 @@
 ﻿@model LimiaUrbanus.WebSite.Models.Imovel
 
-<h2>Galeria</h2>
-
 @{
     var imagens = Model.FilePaths
         .Where(i => i.FileTye == LimiaUrbanus.WebSite.Models.FileType.Img)

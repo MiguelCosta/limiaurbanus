@@ -6,107 +6,103 @@
 
 <h1>@Model.Objetivo.Nome @Model.Nome</h1>
 <h6>@Model.Referencia</h6>
-
-<hr />
-
-<div class="row">
-    <div class="col-md-6">
-        @{
-            var imgs = Model.FilePaths.OrderByDescending(f => f.IsCapa).ThenByDescending(f => f.IsPrincipal);
-            var imgCover = imgs.FirstOrDefault();
-        }
-        @if(imgCover != null)
-        {
-            <img src="/UploadFiles/@imgCover.FileName" class="imovelCover" />
-        }
-        else
-        {
-            <img src="~/Files/photo-does-not-exist.jpg" alt="image not found" />
-        }
-    </div>
-    <div class="col-md-6">
-        <p class="imovelDescricao">
-            @Html.Raw(HttpUtility.HtmlDecode(Model.Descricao))
-        </p>
-        <hr />
-        <dl class="dl-horizontal">
-            @if(Model.Preco > 0)
-            {
-                <dt>Preço</dt>
-                <dd>@Model.Preco.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("pt-PT"))</dd>
-            }
-
-            <dt>Tipo</dt>
-            <dd>@Model.Tipo.Nome</dd>
-
-            <dt>Estado</dt>
-            <dd>@Model.Estado.Nome</dd>
-
-            <dt>Local</dt>
-            <dd>
-                @Model.Freguesia.Concelho.Distrito.Nome / @Model.Freguesia.Concelho.Nome / @Model.Freguesia.Nome
-                @if(string.IsNullOrWhiteSpace(Model.Morada) == false)
-                {
-                    <br />
-                    @Html.Raw(HttpUtility.HtmlDecode(Model.Morada))
-                }
-            </dd>
-
-            <dt>Área</dt>
-            <dd>@Model.Area m&#178;</dd>
-
-            @if(string.IsNullOrWhiteSpace(Model.Tipologia.Nome) == false)
-            {
-                <dt>Tipologia</dt>
-                <dd>@Model.Tipologia.Nome</dd>
-            }
-
-            @if(Model.Wc.HasValue)
-            {
-                <dt>WC</dt>
-                <dd>@Model.Wc</dd>
-            }
-
-            @if(string.IsNullOrWhiteSpace(Model.ClasseEnergetica.Nome) == false)
-            {
-                <dt>Classe energética</dt>
-                <dd>@Model.ClasseEnergetica.Nome</dd>
-            }
-
-            @if(Request.IsAuthenticated)
-            {
-                <dt>Contacto responsável</dt>
-                <dd>@Model.ContactoResponsavel</dd>
-
-                <dt>Coordenadas</dt>
-                <dd>@Model.CoordenadasGps</dd>
-
-                <dt>Destaque</dt>
-                <dd>@Html.DisplayFor(model => model.IsDestaque)</dd>
-
-                <dt>Oportunidade</dt>
-                <dd>@Html.DisplayFor(model => model.IsOportunidade)</dd>
-            }
-        </dl>
-        @if(Request.IsAuthenticated)
-        {
-            <p>
-                @Html.ActionLink("Editar", "Edit", new { id = Model.ImovelId }) |
-                @Html.ActionLink("Lista de imóveis", "Index")
-            </p>
-        }
-    </div>
-</div>
-
+@if(Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.ImovelId }) |
+        @Html.ActionLink("Lista de imóveis", "Index")
+    </p>
+}
 <hr />
 
 @Html.Partial("_GallerySwiper", Model)
 
 <hr />
 
-<h2>Pedir mais informações</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Detalhes</h3>
+            </div>
+            <div class="panel-body">
 
-@Html.Partial("_Contact", $"[{Model.Referencia}] {Model.Nome}")
+                <p class="imovelDescricao">
+                    @Html.Raw(HttpUtility.HtmlDecode(Model.Descricao))
+                </p>
+                <ul class="list-group">
+                    @if(Model.Preco > 0)
+                    {
+                        <li class="list-group-item">
+                            @Model.Preco.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("pt-PT"))
+                            <span class="badge">
+                                Preço
+                            </span>
+                        </li>
+                    }
+                    <li class="list-group-item">
+                        @Model.Tipo.Nome
+                        <span class="badge">
+                            Tipo
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        @Model.Estado.Nome
+                        <span class="badge">
+                            Estado
+                        </span>
+                    </li>
+                    <li class="list-group-item">
+                        @Model.Freguesia.Concelho.Distrito.Nome / @Model.Freguesia.Concelho.Nome / @Model.Freguesia.Nome
+                        <span class="badge">
+                            Local
+                        </span>
+                    </li>
+                    @if(Model.Area > 0)
+                    {
+                        <li class="list-group-item">
+                            @Model.Area m&#178;
+                            <span class="badge">
+                                Área
+                            </span>
+                        </li>
+                    }
+                    @if(string.IsNullOrWhiteSpace(Model.Tipologia.Nome) == false)
+                    {
+                        <li class="list-group-item">
+                            @Model.Tipologia.Nome
+                            <span class="badge">Tipologia</span>
+                        </li>
+                    }
+                    @if(Model.Wc.HasValue && Model.Wc.Value > 0)
+                    {
+                        <li class="list-group-item">
+                            @Model.Wc.Value
+                            <span class="badge">Wc</span>
+                        </li>
+                    }
+                    @if(string.IsNullOrWhiteSpace(Model.ClasseEnergetica.Nome) == false)
+                    {
+                        <li class="list-group-item">
+                            <img src="~/Files/ClassesEnergeticas/classe@(Model.ClasseEnergetica.Nome).png" alt="@Model.ClasseEnergetica.Nome" />
+                            <span class="badge">Classe energética</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fale comigo</h3>
+            </div>
+            <div class="panel-body">
+                @Html.Partial("_Contact", $"[{Model.Referencia}] {Model.Nome}")
+            </div>
+        </div>
+    </div>
+</div>
 
 <hr />
 
