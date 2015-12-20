@@ -3,7 +3,7 @@
 @{
     var imagens = Model.FilePaths
         .Where(i => i.FileTye == LimiaUrbanus.WebSite.Models.FileType.Img)
-        .OrderBy(i => i.IsCapa).ToList();
+        .OrderByDescending(i => i.IsCapa).ToList();
 }
 
 <!-- Swiper -->

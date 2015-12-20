@@ -586,6 +586,7 @@
     <Content Include="Content\kendo\2015.3.1111\Uniform\sprite_kpi.png" />
     <Content Include="Content\kendo\2015.3.1111\Uniform\sprite_kpi_2x.png" />
     <Content Include="Content\swiper.min.css" />
+    <Content Include="Content\trix.css" />
     <Content Include="favicon.ico" />
     <Content Include="Files\a17.png" />
     <Content Include="Files\ClassesEnergeticas\classeA+.png" />
@@ -653,7 +654,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jssor.slider.mini.js" />
     <Content Include="Scripts\kendo\2015.3.1111\angular.min.js" />
     <Content Include="Scripts\kendo\2015.3.1111\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Scripts\kendo\2015.3.1111\cultures\kendo.culture.af.min.js" />
@@ -1177,6 +1177,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\swiper.jquery.min.js" />
+    <Content Include="Scripts\trix.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

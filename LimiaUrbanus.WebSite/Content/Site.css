@@ -91,29 +91,6 @@
         transition: background .2s linear, color .2s linear;
     }
 
-/*.product p {
-        visibility: hidden;
-    }
-
-    .product:hover p {
-        visibility: visible;
-        position: absolute;
-        width: 240px;
-        height: 240px;
-        top: 0;
-        margin: 0;
-        padding: 0;
-        line-height: 240px;
-        vertical-align: middle;
-        text-align: center;
-        color: #fff;
-        background-color: rgba(0,0,0,0.75);
-        -moz-transition: background .2s linear, color .2s linear;
-        -webkit-transition: background .2s linear, color .2s linear;
-        -o-transition: background .2s linear, color .2s linear;
-        transition: background .2s linear, color .2s linear;
-    }*/
-
 .k-listview:after {
     content: ".";
     display: block;
@@ -130,11 +107,6 @@
     -webkit-border-image: none;
     border-image: none;
     width: 100%;
-}
-
-.imovelDescricao {
-    /*background-color: rgba(153, 153, 153, 0.20);*/
-    padding: 15px;
 }
 
 .imovelLocalMap {

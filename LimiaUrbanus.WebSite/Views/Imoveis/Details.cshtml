@@ -26,10 +26,8 @@
                 <h3 class="panel-title">Detalhes</h3>
             </div>
             <div class="panel-body">
-
-                <p class="imovelDescricao">
-                    @Html.Raw(HttpUtility.HtmlDecode(Model.Descricao))
-                </p>
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Descricao))
+                <br />
                 <ul class="list-group">
                     @if(Model.Preco > 0)
                     {
@@ -46,12 +44,15 @@
                             Tipo
                         </span>
                     </li>
-                    <li class="list-group-item">
-                        @Model.Estado.Nome
-                        <span class="badge">
-                            Estado
-                        </span>
-                    </li>
+                    @if(string.IsNullOrWhiteSpace(Model.Estado.Nome) == false)
+                    {
+                        <li class="list-group-item">
+                            @Model.Estado.Nome
+                            <span class="badge">
+                                Estado
+                            </span>
+                        </li>
+                    }
                     <li class="list-group-item">
                         @Model.Freguesia.Concelho.Distrito.Nome / @Model.Freguesia.Concelho.Nome / @Model.Freguesia.Nome
                         <span class="badge">

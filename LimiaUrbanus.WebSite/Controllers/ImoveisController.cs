@@ -122,7 +122,7 @@ namespace LimiaUrbanus.WebSite.Controllers
             {
                 db.Entry(imovel).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = imovel.ImovelId });
             }
             ViewBag.ClasseEnergeticaId = new SelectList(db.ClassesEnergeticas, "ClasseEnergeticaId", "Nome", imovel.ClasseEnergeticaId);
             ViewBag.EstadoId = new SelectList(db.Estados, "EstadoId", "Nome", imovel.EstadoId);
