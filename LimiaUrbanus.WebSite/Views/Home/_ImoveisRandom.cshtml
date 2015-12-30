@@ -1,0 +1,31 @@
+﻿<h2>Mais imóveis</h2>
+
+<div id="listViewRandom"></div>
+<div id="pagerRandom" class="k-pager-wrap"></div>
+
+<script>
+    $(document).ready(function () {
+        searchRandomImoveis();
+    });
+
+    function searchRandomImoveis(e) {
+        var filterRandomImoveis = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "/Imoveis/GetRandomImoveis",
+                    cache: false
+                }
+            },
+            pageSize: 8
+        });
+
+        $("#pagerRandom").kendoPager({
+            dataSource: filterRandomImoveis
+        });
+
+        $("#listViewRandom").kendoListView({
+            dataSource: filterRandomImoveis,
+            template: kendo.template($("#template").html())
+        });
+    }
+</script>

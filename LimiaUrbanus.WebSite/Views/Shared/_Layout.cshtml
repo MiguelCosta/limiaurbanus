@@ -32,12 +32,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer class="text-center">
-            <p>
-                &copy; @DateTime.Now.Year LIMIA URBANUS - Mediação Imobiliária, Unipessoal, Lda. Todos os Direitos Reservados.
-            </p>
-            <p>Desenvolvido por <a href="mailto:miguelpintodacosta@gmail.com">Miguel Costa</a> </p>
-        </footer>
+        @Html.Partial("_Footer")
     </div>
 
     @Scripts.Render("~/bundles/bootstrap")

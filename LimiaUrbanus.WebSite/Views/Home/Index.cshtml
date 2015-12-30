@@ -67,6 +67,9 @@
     </div>
 </div>
 
+@Html.Partial("_ImoveisRandom")
+
+<hr />
 <div class="row">
     <div class="col-md-4">
         <h2>Comprar</h2>
@@ -104,28 +107,31 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        searchLastImoveis();
-    });
-
-    function searchLastImoveis(e) {
-        var filterImoveis = new kendo.data.DataSource({
-            transport: {
-                read: {
-                    url: "/Imoveis/GetLastImoveis"
-                }
-            },
-            pageSize: 8
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            searchLastImoveis();
         });
 
-        $("#pager").kendoPager({
-            dataSource: filterImoveis
-        });
+        function searchLastImoveis(e) {
+            var filterImoveis = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: "/Imoveis/GetLastImoveis",
+                        cache: false
+                    }
+                },
+                pageSize: 8
+            });
 
-        $("#listView").kendoListView({
-            dataSource: filterImoveis,
-            template: kendo.template($("#template").html())
-        });
-    }
-</script>
+            $("#pager").kendoPager({
+                dataSource: filterImoveis
+            });
+
+            $("#listView").kendoListView({
+                dataSource: filterImoveis,
+                template: kendo.template($("#template").html())
+            });
+        }
+    </script>
+}

@@ -191,6 +191,28 @@ namespace LimiaUrbanus.WebSite.Controllers
             }
         }
 
+        public JsonResult GetRandomImoveis()
+        {
+            var result = db.Imoveis
+                .Where(i => i.IsAtivo)
+                .OrderBy(i => Guid.NewGuid())
+                .Take(24)
+                .ToList()
+                .Select(i => new ImovelView(i)).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetRelatedImoveis()
+        {
+            var result = db.Imoveis
+                .Where(i => i.IsAtivo)
+                .OrderBy(i => Guid.NewGuid())
+                .Take(24)
+                .ToList()
+                .Select(i => new ImovelView(i)).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if(disposing)

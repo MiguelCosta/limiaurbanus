@@ -1,19 +1,14 @@
-﻿using System;
+﻿using LimiaUrbanus.WebSite.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using LimiaUrbanus.WebSite.Models;
-using LimiaUrbanus.WebSite.ViewModels;
 
 namespace LimiaUrbanus.WebSite.ViewModels
 {
     public class ImovelSearch
     {
-
         public int? ObjetivoId { get; set; }
 
         public int? TipoId { get; set; }
@@ -49,8 +44,6 @@ namespace LimiaUrbanus.WebSite.ViewModels
         {
             try
             {
-
-
                 var q = db.Imoveis
                     .Include(i => i.FilePaths)
                     .Where(i => i.IsAtivo);
@@ -79,6 +72,7 @@ namespace LimiaUrbanus.WebSite.ViewModels
                     if(ConcelhoId.HasValue) q = q.Where(i => i.Freguesia.ConcelhoId == ConcelhoId.Value);
                     if(FreguesiaId.HasValue) q = q.Where(i => i.FreguesiaId == FreguesiaId.Value);
                 }
+                q = q.OrderByDescending(i => i.ImovelId);
                 return q;
             }
             catch(Exception ex)
