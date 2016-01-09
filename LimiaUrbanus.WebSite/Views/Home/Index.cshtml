@@ -2,6 +2,18 @@
     ViewBag.Title = "Bem-vindo";
 }
 
+@{
+    string imgCoverStr = string.Format("{0}://{1}{2}Files/logotipo_small2_quad.JPG", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.RawUrl}";
+}
+@section metas {
+    <meta property="og:description" content="Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo" />
+    <meta property="og:url" content="@url" />
+    <meta property="og:image" content="@imgCoverStr" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <link href="@imgCoverStr" rel="image_src" />
+}
+
 <div class="jumbotron jumbotron-cover">
     <h1>Limia Urbanus</h1>
     <p class="lead">Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo.</p>

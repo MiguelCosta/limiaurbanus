@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <!-- Logo -->
-            <div class="col-lg-4 col-md-3 hidden-sm hidden-xs">
+            <div class="col-lg-4 col-md-3 hidden-md hidden-xs">
                 <a href="/Home">
                     <img src="~/Files/logotipo_small2.JPG" />
                 </a>
@@ -28,7 +28,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Comprar", "Search", "Imoveis")</li>
+                <li>@Html.ActionLink("Comprar", "Search", "Imoveis", new { ObjetivoId = 4 }, null)</li>
                 <li>@Html.ActionLink("Vender", "Vender", "Home")</li>
                 @*<li>@Html.ActionLink("Acerca", "About", "Home")</li>*@
                 <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
