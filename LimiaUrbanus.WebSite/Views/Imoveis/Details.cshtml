@@ -4,6 +4,23 @@
     ViewBag.Title = $"{Model.Objetivo.Nome} {Model.Nome}";
 }
 
+@{
+    var imgCover = Model.FilePaths.OrderByDescending(f => f.IsCapa).FirstOrDefault()?.FileName;
+    string imgCoverStr = string.Format("{0}://{1}{2}UploadFiles/{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), imgCover);
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.RawUrl}";
+}
+
+@section metas {
+    <meta property="og:description" content="@System.Text.RegularExpressions.Regex.Replace(Model.Descricao, "<.*?>", string.Empty)" />
+    <meta property="og:url" content="@url" />
+    @if(string.IsNullOrWhiteSpace(imgCover) == false)
+    {
+        <meta property="og:image" content="@imgCoverStr" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <link href="@imgCoverStr" rel="image_src" />
+    }
+}
+
 <h1>@Model.Objetivo.Nome @Model.Nome</h1>
 <h6>@Model.Referencia</h6>
 @if(Request.IsAuthenticated)

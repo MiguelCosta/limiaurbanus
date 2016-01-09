@@ -1,9 +1,12 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
+<html lang="pt-pt" prefix="og: http://ogp.me/ns#">
+<head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limia Urbanus @(string.IsNullOrWhiteSpace(ViewBag.Title) ? string.Empty : $"- {ViewBag.Title}")</title>
+    @{
+        var title = string.IsNullOrWhiteSpace(ViewBag.Title) ? string.Empty : $" - {ViewBag.Title}";
+    }
+    <title>Limia Urbanus@(title)</title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -22,6 +25,13 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Limia Urbanus - Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo" />
+
+    <meta property="og:title" content="Limia Urbanus@(title)" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Limia Urbanus" />
+    @RenderSection("metas", false)
 
     <link rel="stylesheet" href="~/Content/kendo/2015.3.1111/kendo.common.min.css" />
     <link rel="stylesheet" href="~/Content/kendo/2015.3.1111/kendo.metro.min.css" />
