@@ -175,20 +175,13 @@ namespace LimiaUrbanus.WebSite.Controllers
 
         public JsonResult GetLastImoveis()
         {
-            try
-            {
-                var result = db.Imoveis
+            var result = db.Imoveis
+                .Where(i => i.IsAtivo)
                 .OrderByDescending(i => i.ImovelId)
                 .Take(24)
                 .ToList()
                 .Select(x => new ImovelView(x)).ToList();
-                return Json(result, JsonRequestBehavior.AllowGet);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetRandomImoveis()
