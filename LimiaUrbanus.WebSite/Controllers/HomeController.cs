@@ -51,7 +51,7 @@ namespace LimiaUrbanus.WebSite.Controllers
             catch(System.Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
-                Session["MensagemUser"] = $"Algo inesperado aconteceu, não foi possível enviar a sua mensagem.\nPedemos desculpa pelo incómodo.\n\n{ex.Message}";
+                Session["MensagemUser"] = $"Algo inesperado aconteceu, não foi possível enviar a sua mensagem.Envie um email para geral@limiaurbanus.pt. <br/>Pedemos desculpa pelo incómodo.<br/><br/>{ex.Message}";
             }
 
             return Redirect(Request.UrlReferrer.PathAndQuery);

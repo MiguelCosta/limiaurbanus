@@ -49,10 +49,20 @@
         <dd>
             @Html.DisplayFor(model => model.IsCapa)
         </dd>
-
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.FilePathId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<h3>Ficheiro</h3>
+
+@if(Model.FileTye == LimiaUrbanus.WebSite.Models.FileType.Img)
+{
+    <img src="~/UploadFiles/@Model.FileName" alt="@Model.FileName" />
+}
+else
+{
+    <a href="~/UploadFiles/@Model.FileName">@Model.FileName</a>
+}

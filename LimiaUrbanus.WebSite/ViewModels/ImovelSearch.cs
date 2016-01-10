@@ -29,6 +29,8 @@ namespace LimiaUrbanus.WebSite.ViewModels
 
         public int? FreguesiaId { get; set; }
 
+        public string Referencia { get; set; }
+
         public bool IsEmpty => ObjetivoId.HasValue == false
                                && TipoId.HasValue == false
                                && EstadoId.HasValue == false
@@ -38,7 +40,8 @@ namespace LimiaUrbanus.WebSite.ViewModels
                                && PrecoMax.HasValue == false
                                && DistritoId.HasValue == false
                                && ConcelhoId.HasValue == false
-                               && FreguesiaId.HasValue == false;
+                               && FreguesiaId.HasValue == false
+                               && string.IsNullOrWhiteSpace(Referencia);
 
         public IEnumerable<Imovel> Query(LimiaUrbanusDbContext db)
         {
@@ -71,6 +74,7 @@ namespace LimiaUrbanus.WebSite.ViewModels
                     if(DistritoId.HasValue) q = q.Where(i => i.Freguesia.Concelho.DistritoId == DistritoId.Value);
                     if(ConcelhoId.HasValue) q = q.Where(i => i.Freguesia.ConcelhoId == ConcelhoId.Value);
                     if(FreguesiaId.HasValue) q = q.Where(i => i.FreguesiaId == FreguesiaId.Value);
+                    if(string.IsNullOrWhiteSpace(Referencia) == false) q = q.Where(i => i.Referencia.ToLower().Contains(Referencia.ToLower()));
                 }
                 q = q.OrderByDescending(i => i.ImovelId);
                 return q;
