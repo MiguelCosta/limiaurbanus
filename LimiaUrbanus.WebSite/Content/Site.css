@@ -63,7 +63,9 @@
         line-height: 1.1em;
         font-size: .9em;
         font-weight: normal;
-        color: #999;
+        color: rgba(51, 122, 183, 1);
+        text-align: center;
+        font-weight: bold;
     }
 
     .imovel-thumbnail ul {
