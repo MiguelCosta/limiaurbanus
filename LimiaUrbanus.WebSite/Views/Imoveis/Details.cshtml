@@ -11,7 +11,14 @@
 }
 
 @section metas {
-    <meta property="og:description" content="@System.Text.RegularExpressions.Regex.Replace(Model.Descricao, "<.*?>", string.Empty)" />
+    @if(string.IsNullOrWhiteSpace(Model.Descricao))
+    {
+        <meta property="og:description" content="Consulte o site para mais informações" />
+    }
+    else
+    {
+        <meta property="og:description" content="@System.Text.RegularExpressions.Regex.Replace(Model.Descricao, "<.*?>", string.Empty)" />
+    }
     <meta property="og:url" content="@url" />
     @if(string.IsNullOrWhiteSpace(imgCover) == false)
     {

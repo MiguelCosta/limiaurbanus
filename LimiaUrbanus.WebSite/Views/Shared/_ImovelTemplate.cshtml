@@ -6,20 +6,32 @@
             # } else { #
             <img src="/UploadFiles/#: Imagem #" alt="#: Nome # image" />
             # } #
-            <h3>#:Nome#</h3>
+            <div>
+                <h4>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    #:Objetivo# #:Tipo#
+                </h4>
+                <h5>
+                    #:Nome#
+                </h5>
+                <hr />
+                <h4>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    #:Concelho#
+                </h4>
+                <h5>#:Freguesia#</h5>
+            </div>
             <ul>
                 <li>&nbsp;</li>
                 <li>&nbsp;</li>
-                <li>#:Objetivo#</li>
-                <li>#:Tipo#</li>
-                <li>#:Concelho# / #:Freguesia#</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
                 # if (Preco < 1) { #
-                <li>&nbsp;</li>
+                <li class="price">Preço sob consulta</li>
                 # } else { #
-                <li>#:kendo.toString(Preco, "c")#</li>
+                <li class="price">#:kendo.toString(Preco, "c")#</li>
                 # } #
-                <li>&nbsp;</li>
-                <li>&nbsp;</li>
             </ul>
         </a>
     </div>
