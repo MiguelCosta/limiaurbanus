@@ -1,0 +1,33 @@
+﻿<h2>Imóveis relacionados</h2>
+
+<div id="listViewRelated"></div>
+<div id="pagerRelated" class="k-pager-wrap"></div>
+
+@Html.Partial("_ImovelTemplate")
+
+<script>
+    $(document).ready(function () {
+        searchRandomImoveis();
+    });
+
+    function searchRandomImoveis(e) {
+        var filterRelatedImoveis = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "/Imoveis/GetRelatedImoveis",
+                    cache: false
+                }
+            },
+            pageSize: 8
+        });
+
+        $("#pagerRelated").kendoPager({
+            dataSource: filterRelatedImoveis
+        });
+
+        $("#listViewRelated").kendoListView({
+            dataSource: filterRelatedImoveis,
+            template: kendo.template($("#template").html())
+        });
+    }
+</script>

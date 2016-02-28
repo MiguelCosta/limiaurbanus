@@ -1,0 +1,80 @@
+﻿<header>
+    <div class="container">
+        <div class="row">
+            <!-- Logo -->
+            <div class="col-lg-4 col-md-3 hidden-sm hidden-xs">
+                <a href="/Home">
+                    <img src="~/Files/logotipo_small2.JPG" />
+                </a>
+            </div>
+            <!-- End Logo -->
+            <div class="col-lg-8 col-md-9 text-right">
+                <h3><span class="glyphicon glyphicon-earphone"></span> <a href="tel:+351967205258">96 720 52 58</a></h3>
+                <h4>Tiago Pita</h4>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Limia Urbanus", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Comprar", "Search", "Imoveis", new { ObjetivoId = 4 }, null)</li>
+                <li>@Html.ActionLink("Arrendar", "Search", "Imoveis", new { ObjetivoId = 1 }, null)</li>
+                <li>@Html.ActionLink("Vender", "Vender", "Home")</li>
+                @*<li>@Html.ActionLink("Acerca", "About", "Home")</li>*@
+                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                @if(Request.IsAuthenticated)
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("Imóveis", "Index", "Imoveis")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Ficheiros", "Index", "FilePath")
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                @Html.ActionLink("Freguesias", "Index", "Freguesias")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Concelhos", "Index", "Concelhos")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Distritos", "Index", "Distritos")
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                @Html.ActionLink("Tipos", "Index", "Tipos")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Classes energéticas", "Index", "ClassesEnergeticas")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Estados", "Index", "Estados")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Objetivos", "Index", "Objetivos")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Tipologias", "Index", "Tipologias")
+                            </li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+            @*@Html.Partial("_LoginPartial")*@
+        </div>
+    </div>
+</div>

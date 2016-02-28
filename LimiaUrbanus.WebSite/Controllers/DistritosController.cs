@@ -115,6 +115,13 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetDistritos()
+        {
+            var ob =
+                db.Distritos.OrderBy(x => x.Nome).Select(x => new { x.DistritoId, x.Nome }).ToList();
+            return Json(ob, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if(disposing)

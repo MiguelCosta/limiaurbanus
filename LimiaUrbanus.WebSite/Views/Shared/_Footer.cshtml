@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNet.Identity
+<p>
+    @if(Request.IsAuthenticated)
+    {
+        using(Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ActionLink("Olá " + User.Identity.GetUserName() + " ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+            <a href="javascript:document.getElementById('logoutForm').submit()">
+                Log off
+            </a>
+        }
+    }
+    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+</p>
+<footer class="text-center">
+    <p>
+        &copy; @DateTime.Now.Year LIMIA URBANUS - Mediação Imobiliária, Unipessoal, Lda. Todos os Direitos Reservados.
+    </p>
+    <p>Desenvolvido por <a href="mailto:miguelpintodacosta@gmail.com">Miguel Costa</a> </p>
+</footer>

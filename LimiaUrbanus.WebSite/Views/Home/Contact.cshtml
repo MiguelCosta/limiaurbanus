@@ -1,17 +1,21 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contacto";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@ViewBag.Title</h2>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+    LIMIA URBANUS, UNIPESSOAL LDA <br />
+    Lugar do Terreiro, Gandra PTL, Portugal <br />
+    <abbr title="Telefone">Telefone: </abbr><a href="tel:+351967205258">96 720 52 58</a>
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <strong>Email:</strong> <a href="mailto:geral@limiaurbanus.pt">geral@limiaurbanus.pt</a><br />
 </address>
+
+<p>
+    Horário de funcionamento: Segunda a sábado, 09h00 - 19h00.
+</p>
+
+<hr />
+@Html.Partial("_Contact")

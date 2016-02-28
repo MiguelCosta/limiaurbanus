@@ -120,6 +120,14 @@ namespace LimiaUrbanus.WebSite.Controllers
             return RedirectToAction("Index");
         }
 
+        public JsonResult GetFreguesias(int? concelhoId)
+        {
+            var r = concelhoId.HasValue ? db.Freguesias.Where(x => x.ConcelhoId == concelhoId.Value) : db.Freguesias;
+
+            var result = r.OrderBy(x => x.Nome).Select(x => new { x.FreguesiaId, x.Nome }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if(disposing)

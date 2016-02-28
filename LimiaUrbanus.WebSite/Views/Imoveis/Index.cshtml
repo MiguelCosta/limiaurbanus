@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LimiaUrbanus.WebSite.Models.Imovel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Referência</th>
+        <th>Estado</th>
+        <th>Tipo</th>
+        <th>Área</th>
+        <th>Preço</th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(motelItem => item.Nome)</td>
+            <td>@Html.DisplayFor(modelItem => item.Referencia)</td>
+            <td>@Html.DisplayFor(modelItem => item.Estado.Nome)</td>
+            <td>@Html.DisplayFor(modelItem => item.Tipo.Nome)</td>
+            <td>@Html.DisplayFor(modelItem => item.Area)m2</td>
+            <td>@Html.DisplayFor(modelItem => item.Preco)€</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ImovelId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ImovelId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ImovelId })
+            </td>
+        </tr>
+    }
+
+</table>

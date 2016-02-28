@@ -29,6 +29,10 @@ namespace LimiaUrbanus.WebSite.Models
 
         public DbSet<Concelho> Concelhos { get; set; }
 
-        public System.Data.Entity.DbSet<LimiaUrbanus.WebSite.Models.Freguesia> Freguesias { get; set; }
+        public DbSet<Freguesia> Freguesias { get; set; }
+
+        public DbSet<Imovel> Imoveis { get; set; }
+
+        public DbSet<FilePath> FilePath { get; set; }
     }
 }

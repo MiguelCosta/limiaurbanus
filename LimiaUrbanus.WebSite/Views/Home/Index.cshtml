@@ -1,31 +1,131 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Bem-vindo";
 }
 
-<div class="jumbotron">
-    <h1>Limia Urbanus</h1>
-    <p class="lead">Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo desde 2015.</p>
-    <p><a href="" class="btn btn-primary btn-lg">Procurar imóvel</a></p>
+@{
+    string imgCoverStr = string.Format("{0}://{1}{2}Files/logotipo_small2_quad.JPG", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.RawUrl}";
+}
+@section metas {
+    <meta property="og:description" content="Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo" />
+    <meta property="og:url" content="@url" />
+    <meta property="og:image" content="@imgCoverStr" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <link href="@imgCoverStr" rel="image_src" />
+}
+
+<div class="jumbotron jumbotron-cover" style="padding-left: 0; padding-right:0;">
+    <h1 class="text-center">Limia Urbanus</h1>
+    <p class="lead text-center">Mediação Imobiliária, Unipessoal Lda. é uma agência imobiliária licenciada a operar no distrito de Viana do Castelo.</p>
+    <p class="text-center">
+        @Html.ActionLink("Procure o seu imóvel »", "Search", "Imoveis", null, new { @class = "btn btn-primary btn-lg" })
+    </p>
 </div>
 
+<hr />
+
+<h2>Últimas novidades</h2>
+@Html.Partial("~/Views/Imoveis/_ImoveisList.cshtml")
+
+<hr />
+
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-9">
+        <h4>
+            Se tem uma casa, um apartamento ou outro imóvel para vender ou arrendar, tenho o maior prazer em ajudá-lo.
+        </h4>
+        <ul class="list-group">
+            <li class="list-group-item active">
+                Ofereço
+            </li>
+            <li class="list-group-item">
+                <p>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    Um extenso catálogo de moradias, apartamentos e terrenos.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    Mediadores que irão ajudá-lo passo a passo a encontrar o melhor imóvel pelo preço certo para fechar um negócio.
+                </p>
+            </li>
+        </ul>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-3 text-center">
+        <figure class="figure">
+            <div class="user profile center-block">
+            </div>
+            <figcaption class="figure-caption"><b>Tiago Pita</b></figcaption>
+        </figure>
     </div>
 </div>
+
+@Html.Partial("_ImoveisRandom")
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h2>Comprar</h2>
+        <p>
+            Encontre o imóvel que pretende comprar. Temos a melhor opções para si.
+        </p>
+        <p>
+
+            <a class="btn btn-default" href="/Imoveis/Search">Ver mais &raquo;</a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Vender</h2>
+        <p>
+            Se tem uma casa, um apartamento ou outro imóvel para vender ou arrendar, teremos o maior prazer em ajudá-lo.
+        </p>
+        <p>
+            Oferecemos avaliação gratuita e publicidade.
+        </p>
+        <p>
+            <a class="btn btn-default" href="/Home/Vender">Ver mais &raquo;</a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Contactar-me</h2>
+        <p>
+            Estámos à disposição para esclarecer qualquer dúvida e para o ajudar com os seus imóveis.
+        </p>
+        <p>
+            Não hesite em entrar em contacto connosco.
+        </p>
+        <p>
+            <a class="btn btn-default" href="/Home/Contact">Ver mais &raquo;</a>
+        </p>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            searchLastImoveis();
+        });
+
+        function searchLastImoveis(e) {
+            var filterImoveis = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: "/Imoveis/GetLastImoveis",
+                        cache: false
+                    }
+                },
+                pageSize: 8
+            });
+
+            $("#pager").kendoPager({
+                dataSource: filterImoveis
+            });
+
+            $("#listView").kendoListView({
+                dataSource: filterImoveis,
+                template: kendo.template($("#template").html())
+            });
+        }
+    </script>
+}

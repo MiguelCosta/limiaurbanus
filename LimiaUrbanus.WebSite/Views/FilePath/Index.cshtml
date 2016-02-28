@@ -1,0 +1,69 @@
+﻿@model IEnumerable<LimiaUrbanus.WebSite.Models.FilePath>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImovelId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imovel.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imovel.Referencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileTye)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPrincipal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCapa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImovelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imovel.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imovel.Referencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileTye)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPrincipal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsCapa)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FilePathId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FilePathId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FilePathId })
+            </td>
+        </tr>
+    }
+</table>

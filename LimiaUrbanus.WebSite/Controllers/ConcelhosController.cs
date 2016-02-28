@@ -37,6 +37,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: Concelhos/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.DistritoId = new SelectList(db.Distritos, "DistritoId", "Nome");
@@ -48,6 +49,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ConcelhoId,Nome,DistritoId")] Concelho concelho)
         {
             if(ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: Concelhos/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if(id == null)
@@ -82,6 +85,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ConcelhoId,Nome,DistritoId")] Concelho concelho)
         {
             if(ModelState.IsValid)
@@ -95,6 +99,7 @@ namespace LimiaUrbanus.WebSite.Controllers
         }
 
         // GET: Concelhos/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if(id == null)
@@ -112,12 +117,21 @@ namespace LimiaUrbanus.WebSite.Controllers
         // POST: Concelhos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Concelho concelho = db.Concelhos.Find(id);
             db.Concelhos.Remove(concelho);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetConcelhos(int? distritoId)
+        {
+            var r = distritoId.HasValue ? db.Concelhos.Where(x => x.DistritoId == distritoId.Value) : db.Concelhos;
+
+            var result = r.OrderBy(x => x.Nome).Select(x => new { x.ConcelhoId, x.Nome }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

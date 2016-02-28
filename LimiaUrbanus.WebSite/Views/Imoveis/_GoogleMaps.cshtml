@@ -1,0 +1,34 @@
+﻿@using Jmelosegui.Mvc.GoogleMap
+@model LimiaUrbanus.WebSite.Models.Imovel
+
+<h2>Mapa</h2>
+@{
+    ///TODO: change to application config
+    var apiKey = "AIzaSyD44zm0rqAj3f7OrXlGYxBarTUpzSo6Jko";
+    var localSearch = Html.Encode($"{Model.Freguesia.Nome}, {Model.Freguesia.Concelho.Nome}");
+    var localUrlGoogleMaps = $"https://www.google.com/maps/embed/v1/search?key={apiKey}&q={localSearch}";
+}
+@*<div id="mapcanvas">
+    <iframe class="imovelLocalMap" frameborder="0"
+        src="@localUrlGoogleMaps" />
+</div>*@
+<div class="row">
+    <div class="col-md-12">
+        @{
+            Html.GoogleMap()
+                .Name("map")
+                .Height(400)
+                .Center(c => c.Address(localSearch))
+                .Markers(marker =>
+                {
+                    marker.Add()
+                        .Address(localSearch)
+                        .Title(Model.Nome);
+                })
+                .Zoom(15)
+                .Render();
+        }
+    </div>
+</div>
+
+@(Html.GoogleMap().ScriptRegistrar())

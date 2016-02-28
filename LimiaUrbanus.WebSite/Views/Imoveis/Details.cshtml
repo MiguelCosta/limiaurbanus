@@ -1,0 +1,136 @@
+﻿@model LimiaUrbanus.WebSite.Models.Imovel
+
+@{
+    ViewBag.Title = $"{Model.Objetivo.Nome} {Model.Nome}";
+}
+
+@{
+    var imgCover = Model.FilePaths.OrderByDescending(f => f.IsCapa).FirstOrDefault()?.FileName;
+    string imgCoverStr = string.Format("{0}://{1}{2}UploadFiles/{3}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"), imgCover);
+    string url = $"{Request.Url.Scheme}://{Request.Url.Authority}{Request.RawUrl}";
+}
+
+@section metas {
+    @if(string.IsNullOrWhiteSpace(Model.Descricao))
+    {
+        <meta property="og:description" content="Consulte o site para mais informações" />
+    }
+    else
+    {
+        <meta property="og:description" content="@System.Text.RegularExpressions.Regex.Replace(Model.Descricao, "<.*?>", string.Empty)" />
+    }
+    <meta property="og:url" content="@url" />
+    @if(string.IsNullOrWhiteSpace(imgCover) == false)
+    {
+        <meta property="og:image" content="@imgCoverStr" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <link href="@imgCoverStr" rel="image_src" />
+    }
+}
+
+<h1>@Model.Objetivo.Nome @Model.Nome</h1>
+<h6>@Model.Referencia</h6>
+@if(Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.ImovelId }) |
+        @Html.ActionLink("Lista de imóveis", "Index")
+    </p>
+}
+<hr />
+
+@Html.Partial("_GallerySwiper", Model)
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Detalhes</h3>
+            </div>
+            <div class="panel-body">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Descricao))
+                <br />
+                <ul class="list-group">
+                    @if(Model.Preco > 0)
+                    {
+                        <li class="list-group-item">
+                            @Model.Preco.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("pt-PT"))
+                            <span class="badge">
+                                Preço
+                            </span>
+                        </li>
+                    }
+                    <li class="list-group-item">
+                        @Model.Tipo.Nome
+                        <span class="badge">
+                            Tipo
+                        </span>
+                    </li>
+                    @if(string.IsNullOrWhiteSpace(Model.Estado.Nome) == false)
+                    {
+                        <li class="list-group-item">
+                            @Model.Estado.Nome
+                            <span class="badge">
+                                Estado
+                            </span>
+                        </li>
+                    }
+                    <li class="list-group-item">
+                        @Model.Freguesia.Concelho.Distrito.Nome / @Model.Freguesia.Concelho.Nome / @Model.Freguesia.Nome
+                        <span class="badge">
+                            Local
+                        </span>
+                    </li>
+                    @if(Model.Area > 0)
+                    {
+                        <li class="list-group-item">
+                            @Model.Area m&#178;
+                            <span class="badge">
+                                Área
+                            </span>
+                        </li>
+                    }
+                    @if(string.IsNullOrWhiteSpace(Model.Tipologia.Nome) == false)
+                    {
+                        <li class="list-group-item">
+                            @Model.Tipologia.Nome
+                            <span class="badge">Tipologia</span>
+                        </li>
+                    }
+                    @if(Model.Wc.HasValue && Model.Wc.Value > 0)
+                    {
+                        <li class="list-group-item">
+                            @Model.Wc.Value
+                            <span class="badge">Wc</span>
+                        </li>
+                    }
+                    @if(string.IsNullOrWhiteSpace(Model.ClasseEnergetica.Nome) == false)
+                    {
+                        <li class="list-group-item">
+                            <img src="~/Files/ClassesEnergeticas/classe@(Model.ClasseEnergetica.Nome).png" alt="@Model.ClasseEnergetica.Nome" />
+                            <span class="badge">Classe energética</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fale comigo</h3>
+            </div>
+            <div class="panel-body">
+                @Html.Partial("_Contact", $"[{Model.Referencia}] {Model.Nome}")
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+@Html.Partial("_GoogleMaps", Model)
+
+@Html.Partial("_ImoveisRelated")

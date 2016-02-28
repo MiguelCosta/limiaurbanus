@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -9,16 +8,173 @@
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.user {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
+
+.profile {
+    background-image: url('../../Files/FotografiaTiagoCunha.jpg');
+}
+
+.jumbotron-cover {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("../../Files/PonteDeLima.jpg");
+    background-size: cover;
+    background-position: center, center;
+    color: white;
+}
+
+#listView {
+    padding: 10px 5px;
+    margin-bottom: -1px;
+    min-height: 510px;
+}
+
+.imovel-thumbnail {
+    float: left;
+    position: relative;
+    width: 241px;
+    height: 350px;
+    margin: 5px 20px 10px;
+    padding: 0;
+    background-color: rgba(235, 235, 235, 1);
+}
+
+    .imovel-thumbnail a {
+        text-decoration: none;
+    }
+
+    .imovel-thumbnail img {
+        width: 240px;
+        height: 240px;
+    }
+
+    .imovel-thumbnail p {
+        margin: 10px;
+        text-decoration: none;
+    }
+
+    .imovel-thumbnail h4 {
+        font-weight: bold;
+        color: #337ab7;
+        font-size: 14px;
+        margin: 10px;
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+
+    .imovel-thumbnail h5 {
+        font-weight: normal;
+        color: #337ab7;
+        font-size: 85%;
+        margin: 0;
+        margin-left: 28px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        height: 20px;
+        max-height: 20px;
+    }
+
+    .imovel-thumbnail hr {
+        margin: 0;
+        margin-bottom: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-top-color: white;
+    }
+
+    .imovel-thumbnail ul {
+        visibility: hidden;
+    }
+
+    .imovel-thumbnail:hover ul {
+        visibility: visible;
+        list-style-type: none;
+        position: absolute;
+        width: 235px;
+        height: 350px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 40px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.05);
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+        transition: background .2s linear, color .2s linear;
+        text-decoration: none;
+        border: 4px solid black;
+    }
+
+    .imovel-thumbnail:hover .price {
+        background-color: black;
+    }
+
+.k-listview:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.imovelCover {
+    border-radius: 2%;
+    /*border: 10px solid black;*/
+    -moz-border-image: none;
+    -o-border-image: none;
+    -webkit-border-image: none;
+    border-image: none;
+    width: 100%;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+.gallery-top {
+    height: 400px;
+    width: 100%;
+}
+
+.gallery-thumbs {
+    height: 20%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+    .gallery-thumbs .swiper-slide {
+        width: 100px;
+        height: 100px;
+        opacity: 0.4;
+    }
+
+    .gallery-thumbs .swiper-slide-active {
+        opacity: 1;
+    }

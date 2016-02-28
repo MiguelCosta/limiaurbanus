@@ -1,0 +1,38 @@
+﻿<script type="text/x-kendo-template" id="template">
+    <div class="imovel-thumbnail">
+        <a href="/Imoveis/Details/#:ImovelId#">
+            # if (Imagem === null || Imagem === '') { #
+            <img src="/Files/logotipo_small2_quad.JPG" alt="sem imagem" />
+            # } else { #
+            <img src="/UploadFiles/#: Imagem #" alt="#: Nome # image" />
+            # } #
+            <div>
+                <h4>
+                    <span class="glyphicon glyphicon-asterisk"></span>
+                    #:Objetivo# #:Tipo#
+                </h4>
+                <h5>
+                    #:Nome#
+                </h5>
+                <hr />
+                <h4>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    #:Concelho#
+                </h4>
+                <h5>#:Freguesia#</h5>
+            </div>
+            <ul>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                # if (Preco < 1) { #
+                <li class="price">Preço sob consulta</li>
+                # } else { #
+                <li class="price">#:kendo.toString(Preco, "c")#</li>
+                # } #
+            </ul>
+        </a>
+    </div>
+</script>
