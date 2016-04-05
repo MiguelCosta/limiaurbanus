@@ -29,19 +29,17 @@ namespace LimiaUrbanus.WebSite.Controllers
 
         public ActionResult EnviarEmail(string email, string assunto, string mensagem, string telefone)
         {
-            SmtpClient client = new SmtpClient("smtp-mail.outlook.com");
-
-            client.Port = 587;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.EnableSsl = true;
             var username = WebConfigurationManager.AppSettings["EmailUsername"];
             var password = WebConfigurationManager.AppSettings["EmailPassword"];
+            var emailTo = WebConfigurationManager.AppSettings["EmailTo"];
+            SmtpClient client = new SmtpClient("limiaurbanus.pt", 25);
             client.Credentials = new System.Net.NetworkCredential(username, password);
+            client.UseDefaultCredentials = false;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             try
             {
-                var mail = new MailMessage("limiaurbanus@outlook.com", "miguelpintodacosta@gmail.com");
+                var mail = new MailMessage(username, emailTo);
                 var body = $"Email: {email}\nTelefone: {telefone}\nData: {System.DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}\n\n\n{mensagem}";
                 mail.Subject = assunto;
                 mail.Body = body;

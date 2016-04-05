@@ -612,6 +612,8 @@
     <Content Include="favicon-96x96.png" />
     <Content Include="favicon.ico" />
     <Content Include="Files\a17.png" />
+    <Content Include="Files\banner.jpg" />
+    <Content Include="Files\banner_mobile.jpg" />
     <Content Include="Files\ClassesEnergeticas\classeA+.png" />
     <Content Include="Files\ClassesEnergeticas\classeA.png" />
     <Content Include="Files\ClassesEnergeticas\classeB-.png" />
@@ -726,9 +728,6 @@
     <None Include="MvcSiteMapSchema.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\LimiaUrbanus - Web Deploy Azure.pubxml" />
-    <None Include="Properties\PublishProfiles\LocalProduction.pubxml" />
-    <None Include="Properties\PublishProfiles\LocalProductionDebug.pubxml" />
     <Content Include="google1b2e3eedfdda8911.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -736,6 +735,7 @@
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <None Include="Properties\PublishProfiles\FileSystem.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
