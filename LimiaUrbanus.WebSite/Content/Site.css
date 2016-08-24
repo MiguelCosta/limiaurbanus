@@ -29,10 +29,17 @@
 }
 
 .jumbotron-cover {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), url("../../Files/PonteDeLima.jpg");
+    background: url("../../Files/banner.jpg");
     background-size: cover;
-    background-position: center, center;
+    background-repeat: no-repeat;
+    background-position: top, center;
     color: white;
+    height: 350px;
+}
+
+.button-search {
+    margin-top: 210px;
+    text-align: center;
 }
 
 #listView {
@@ -178,3 +185,20 @@
     .gallery-thumbs .swiper-slide-active {
         opacity: 1;
     }
+
+/* Small devices (tablets, less than 992px ) */
+@media (max-width: 992px) {
+    .jumbotron-cover {
+        background: url("../../Files/banner_mobile.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top, center;
+        color: white;
+        height: 150px;
+    }
+
+    .button-search {
+        margin-top: 30px;
+        text-align: center;
+    }
+}
